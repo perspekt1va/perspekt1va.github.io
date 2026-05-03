@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Руководство пользователя роутера</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#2563eb;--primary-dark:#1e40af;--bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--red:#dc2626;--amber:#d97706;--green:#16a34a;--nav-w:230px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;}
+.sidenav{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#fff;border-right:1px solid var(--border);overflow-y:auto;z-index:100;padding:0 0 24px;display:flex;flex-direction:column;}
+.sidenav-header{padding:18px 18px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:1;}
+.sidenav-header span{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.sidenav nav{padding:8px 0;}
+.sidenav a{display:flex;align-items:flex-start;gap:9px;padding:8px 18px;font-size:12.5px;font-weight:500;color:var(--muted);text-decoration:none;border-left:3px solid transparent;transition:all .15s;line-height:1.35;}
+.sidenav a:hover,.sidenav a.active{color:var(--primary);background:#eff6ff;border-left-color:var(--primary);}
+.sidenav a .ni{font-size:14px;flex-shrink:0;margin-top:1px;}
+.nav-divider{height:1px;background:var(--border);margin:6px 18px;}
+.mobile-bar{display:none;position:sticky;top:0;z-index:99;background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;}
+.mob-toggle{background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;}
+.mob-menu{display:none;flex-direction:column;gap:3px;margin-top:10px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{padding:9px 12px;background:var(--bg);border-radius:8px;text-decoration:none;color:var(--text);font-size:13px;font-weight:500;}
+.main{margin-left:var(--nav-w);min-height:100vh;}
+.content{max-width:780px;margin:0 auto;padding:36px 32px 80px;}
+.hero{background:linear-gradient(135deg,#1e40af 0%,#2563eb 100%);color:white;padding:36px 40px;border-radius:20px;margin-bottom:28px;box-shadow:0 8px 28px -4px rgba(37,99,235,.35);}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:100px;padding:3px 12px;font-size:11px;font-weight:600;margin-bottom:12px;letter-spacing:.05em;}
+.hero h1{font-size:clamp(19px,4vw,26px);font-weight:700;margin-bottom:8px;line-height:1.3;}
+.hero p{opacity:.88;font-size:14px;}
+.wifi-block{background:linear-gradient(135deg,#022c22 0%,#064e3b 100%);border-radius:18px;padding:26px 30px;margin-bottom:28px;position:relative;overflow:hidden;}
+.wifi-block::after{content:"📶";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:58px;opacity:.1;pointer-events:none;}
+.wifi-title{color:#6ee7b7;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
+.wifi-rows{display:flex;flex-direction:column;gap:12px;}
+.wifi-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.wifi-label{color:#a7f3d0;font-size:12px;font-weight:600;min-width:70px;flex-shrink:0;}
+.wifi-vals{display:flex;flex-wrap:wrap;gap:8px;}
+.wifi-val{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:600;padding:5px 13px;border-radius:7px;}
+.wifi-val.pw{background:rgba(110,231,183,.18);border-color:rgba(110,231,183,.35);color:#6ee7b7;font-size:20px;padding:8px 20px;letter-spacing:.04em;}
+.section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;margin-bottom:22px;scroll-margin-top:20px;}
+.section.yellow-bg{background:#fffbeb;border-color:#fde68a;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.section-icon{font-size:22px;}
+h2{font-size:19px;font-weight:700;color:var(--primary);line-height:1.2;}
+h2.red{color:var(--red);}
+h3{font-size:14.5px;font-weight:700;margin:22px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.step-box{border:1px solid var(--border);border-radius:11px;padding:18px 22px;margin:12px 0;background:#fafafa;}
+.step-box ol,.step-box ul{padding-left:20px;}
+.step-box li{margin-bottom:7px;}
+.step-box h3{margin-top:0;}
+.alert{padding:14px 16px;border-radius:10px;margin:14px 0;border-left:4px solid transparent;font-size:13.5px;display:flex;gap:10px;}
+.alert .ai{font-size:17px;flex-shrink:0;margin-top:1px;}
+.alert .ab{display:inline;line-height:1.6;}
+.alert .ab *{display:inline;}
+.alert .ab strong{display:inline;font-weight:700;}
+.alert .ab br{display:block;content:'';margin-top:4px;}
+.alert-warn{background:#fef3c7;border-left-color:#92400e;color:#78350f;}
+.alert-warn-on-yellow{background:#f59e0b;border-left-color:#78350f;color:#1c1917;}
+.alert-danger{background:#fef2f2;border-left-color:var(--red);color:#7f1d1d;}
+.alert-info{background:#eff6ff;border-left-color:var(--primary);color:#1e3a5f;}
+.alert-success{background:#f0fdf4;border-left-color:var(--green);color:#14532d;}
+.inline-link{color:var(--primary);text-decoration:underline;text-underline-offset:2px;font-weight:700;display:inline!important;}
+.inline-link:hover{color:var(--primary-dark);}
+code{background:#f1f5f9;border:1px solid var(--border);padding:2px 7px;border-radius:5px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:#be123c;font-weight:600;}
+.code-block{background:#0f172a;border-radius:10px;padding:14px 18px;margin:12px 0;position:relative;overflow-x:auto;}
+.code-block pre{font-family:"JetBrains Mono",monospace;font-size:12px;color:#86efac;white-space:pre-wrap;word-break:break-all;line-height:1.6;}
+.code-label{font-size:9.5px;color:#64748b;font-family:"JetBrains Mono",monospace;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px;}
+.copy-btn{position:absolute;top:10px;right:10px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer;font-family:"Inter",sans-serif;transition:all .15s;}
+.copy-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.screenshot{width:100%;border-radius:9px;border:1px solid var(--border);margin:12px 0 3px;display:block;}
+.screenshot-caption{text-align:center;font-size:11.5px;color:var(--muted);margin-bottom:12px;font-style:italic;}
+.img-placeholder{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:10px;padding:18px;text-align:center;margin:12px 0;color:#94a3b8;font-size:13px;}
+.backup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0;}
+.backup-card{border:1px solid var(--border);border-radius:11px;padding:16px;display:flex;flex-direction:column;gap:9px;background:#fafafa;}
+.backup-card .bname{font-weight:700;font-size:13.5px;}
+.dl-btn{display:inline-flex;align-items:center;gap:5px;background:#16a34a;color:#fff;font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:7px;text-decoration:none;transition:opacity .15s;align-self:flex-start;}
+.dl-btn:hover{opacity:.85;}
+p{margin-bottom:10px;}
+footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px;}
+@media(max-width:768px){.sidenav{display:none;}.mobile-bar{display:block;}.main{margin-left:0;}.content{padding:16px 14px 60px;}.hero{padding:24px 20px;}.wifi-block{padding:20px 18px;}.section{padding:20px 16px;}.wifi-val.pw{font-size:16px;}}
+</style>
+</head>
+<body>
+
+<aside class="sidenav" id="sidenav">
+  <div class="sidenav-header"><span>Навигация</span></div>
+  <nav>
+    <a href="#wifi"><span class="ni">📶</span> Wi-Fi данные</a>
+    <a href="#troubleshooting"><span class="ni">🆘</span> Что делать, если не работает</a>
+    <a href="#diagnostics"><span class="ni">🔍</span> Диагностика</a>
+    <div class="nav-divider"></div>
+    <a href="#connection"><span class="ni">🔗</span> Подключение роутера</a>
+    <a href="#web-interface"><span class="ni">🖥️</span> Веб-панель управления</a>
+    <a href="#podkop-settings"><span class="ni">⚙️</span> Настройки Podkop</a>
+    <div class="nav-divider"></div>
+    <a href="#updates"><span class="ni">🔄</span> Обновление серверов</a>
+    <a href="#reset"><span class="ni">🔁</span> Сброс и восстановление</a>
+    <a href="#backups"><span class="ni">💾</span> Бекапы прошивки</a>
+    <div class="nav-divider"></div>
+    <a href="#gaming-mining"><span class="ni">🎮</span> Игровые приставки / Майнинг</a>
+    <div class="nav-divider"></div>
+    <a href="#server-switch"><span class="ni">🔀</span> Смена серверов</a>
+    <a href="#main-router"><span class="ni">🌐</span> Роутер как основной</a>
+    <a href="#wifi-settings"><span class="ni">📡</span> Смена названия и пароля Wi-Fi</a>
+  </nav>
+</aside>
+
+<div class="mobile-bar">
+  <button class="mob-toggle" onclick="toggleNav()">☰ &nbsp;Разделы инструкции</button>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#wifi" onclick="closeNav()">📶 Wi-Fi данные</a>
+    <a href="#troubleshooting" onclick="closeNav()">🆘 Что делать, если не работает</a>
+    <a href="#diagnostics" onclick="closeNav()">🔍 Диагностика</a>
+    <a href="#connection" onclick="closeNav()">🔗 Подключение роутера</a>
+    <a href="#web-interface" onclick="closeNav()">🖥️ Веб-панель управления</a>
+    <a href="#podkop-settings" onclick="closeNav()">⚙️ Настройки Podkop</a>
+    <a href="#updates" onclick="closeNav()">🔄 Обновление серверов</a>
+    <a href="#reset" onclick="closeNav()">🔁 Сброс и восстановление</a>
+    <a href="#backups" onclick="closeNav()">💾 Бекапы прошивки</a>
+    <a href="#gaming-mining" onclick="closeNav()">🎮 Игровые приставки / Майнинг</a>
+    <a href="#server-switch" onclick="closeNav()">🔀 Смена серверов</a>
+    <a href="#main-router" onclick="closeNav()">🌐 Роутер как основной</a>
+    <a href="#wifi-settings" onclick="closeNav()">📡 Смена названия и пароля Wi-Fi</a>
+  </div>
+</div>
+
+<div class="main">
+<div class="content">
+
+<header class="hero">
+  <div class="hero-badge">OpenWrt · Podkop · Выборочная маршрутизация</div>
+  <h1>Руководство пользователя роутера</h1>
+  <p><strong>Ваш роутер уже полностью настроен</strong> и готов к работе. Предустановлена подписка с доступом к более чем 130 серверам, установлено автообновление. Просто подключитесь к Wi-Fi и пользуйтесь.</p>
+</header>
+
+<div class="wifi-block" id="wifi">
+  <div class="wifi-title">📶 Данные для подключения к Wi-Fi</div>
+  <div class="wifi-rows">
+    <div class="wifi-row">
+      <span class="wifi-label">Сети:</span>
+      <div class="wifi-vals">
+        <span class="wifi-val">OpenWrt</span>
+        <span class="wifi-val">OpenWrt-5g</span>
+      </div>
+    </div>
+    <div class="wifi-row">
+      <span class="wifi-label">Пароль:</span>
+      <div class="wifi-vals"><span class="wifi-val pw">avito1234</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TROUBLESHOOTING -->
+<section class="section" id="troubleshooting">
+  <div class="section-header">
+    <span class="section-icon">🆘</span>
+    <h2 class="red">Что делать, если роутер не работает?</h2>
+  </div>
+
+  <div class="step-box">
+    <h3>1. Проверка физического подключения</h3>
+    <p>Прежде всего убедитесь, что всё правильно подключено — см. раздел <a href="#connection" class="inline-link"><strong>«Подключение»</strong></a>. Если подключение верное, но роутер не работает — <strong>просто перезагрузите его</strong>: вытащите вилку питания и вставьте обратно. В большинстве случаев это помогает.</p>
+  </div>
+
+  <div class="step-box">
+    <h3>2. Не работает даже обычный интернет</h3>
+    <p>Если перезагрузка не помогла — проверьте обычные сайты: Яндекс, ВКонтакте, Гугл. Если они тоже не открываются — дело в ВПН: он запускается раньше, чем устанавливается основное соединение. Нужно временно его отключить.</p>
+    <p>Для этого зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> → <strong>Services → Podkop → Диагностика</strong>:</p>
+    <img src="img/1.png" alt="Services → Podkop" class="screenshot">
+<p class="screenshot-caption">Открываем Services → Podkop, переходим во вкладку Диагностика</p>
+    <img src="img/2.png" alt="Вкладка Диагностика" class="screenshot">
+<p class="screenshot-caption">Вкладка Диагностика — кнопки управления Podkop</p>
+    <ol>
+      <li>Нажмите <code>Отключить автостарт</code></li>
+      <li>Нажмите <code>Остановить podkop</code><br>
+      <em>(Если вместо «Остановить» видите «Запустить» — podkop уже остановлен, вторую кнопку нажимать не нужно)</em></li>
+    </ol>
+    <img src="img/3.png" alt="Отключить автостарт и Остановить" class="screenshot">
+<p class="screenshot-caption">Кнопки Отключить автостарт и Остановить podkop</p>
+    <ol start="3">
+      <li>Перезагрузите роутер. Когда появится обычный интернет — нажмите <code>Включить автостарт</code> и <code>Запустить podkop</code></li>
+    </ol>
+    <img src="img/4.png" alt="Включить автостарт и Запустить" class="screenshot">
+<p class="screenshot-caption">Нажимаем Включить автостарт и Запустить podkop</p>
+    <div class="alert alert-danger">
+      <span class="ai">🚨</span>
+      <span class="ab">Сначала должен появиться обычный интернет — и только после этого ВПН.</span>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h3>3. Обычный интернет есть, заблокированные сайты не работают</h3>
+    <p>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> → <strong>Services → Podkop → Диагностика</strong> и нажмите <code>Перезапустить podkop</code>. Подождите до 5 минут.</p>
+    <img src="img/5.png" alt="Перезапустить Podkop" class="screenshot">
+<p class="screenshot-caption">Кнопка «Перезапустить Podkop» во вкладке Диагностика</p>
+  </div>
+
+  <div class="step-box">
+    <h3>4. Углублённая диагностика</h3>
+    <p>Если предыдущие варианты не помогли — необходимо провести диагностику и найти конкретную причину. Подробное описание — в разделе <a href="#diagnostics" class="inline-link"><strong>«Диагностика»</strong></a> ниже.</p>
+  </div>
+</section>
+
+<!-- DIAGNOSTICS -->
+<section class="section" id="diagnostics">
+  <div class="section-header">
+    <span class="section-icon">🔍</span>
+    <h2>Диагностика</h2>
+  </div>
+  <p>Если предыдущие шаги не помогли — нужно запустить диагностику и найти конкретную причину неполадки.</p>
+
+  <h3>Как запустить диагностику</h3>
+  <p>Находясь в <a href="#web-interface" class="inline-link"><strong>веб-панели</strong></a>, перейдите в <strong>Services → Podkop</strong> и откройте вкладку <strong>Диагностика</strong>. Нажмите кнопку <code>Запустить диагностику</code>.</p>
+  <img src="img/6.png" alt="Запустить диагностику" class="screenshot">
+<p class="screenshot-caption">Вкладка Диагностика — нажимаем «Запустить диагностику»</p>
+
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab"><strong>Первый запуск может показать ошибки</strong> — маршруты ещё не успели инициализироваться. Подождите 2–3 минуты и запустите снова.</span>
+  </div>
+  <img src="img/7.png" alt="Ошибки при первом запуске" class="screenshot">
+<p class="screenshot-caption">Результат диагностики с ошибками при первом запуске</p>
+
+  <h3>Успешная диагностика</h3>
+  <p>Если все секции зелёные — роутер работает корректно.</p>
+  <img src="img/8.png" alt="Успешная диагностика" class="screenshot">
+<p class="screenshot-caption">Все проверки пройдены — все секции зелёные</p>
+
+  <h3>Ошибка: «Прокси-трафик не маршрутизируется через FakeIP»</h3>
+  <p>Эта ошибка в конце диагностики означает, что серверы недоступны.</p>
+  <img src="img/9.png" alt="Ошибка прокси-трафик FakeIP" class="screenshot">
+<p class="screenshot-caption">Ошибка: «Прокси-трафик не маршрутизируется через FakeIP»</p>
+  <p>Перейдите во вкладку <strong>Дашборд</strong> и нажмите <strong>«Тестирование задержки»</strong>. Если у сервера пишется <strong>N/A</strong> — его заблокировали. Если сервер рабочий — рядом с ним отображается задержка (пинг) в миллисекундах. Соответственно, если у всех серверов N/A — их нужно обновить.</p>
+  <img src="img/10.png" alt="Дашборд — N/A серверов" class="screenshot">
+<p class="screenshot-caption">Дашборд: серверы со статусом N/A — недоступны</p>
+  <p>Перейдите в раздел <a href="#updates" class="inline-link"><strong>«Обновление серверов»</strong></a>.</p>
+
+  <h3>Ошибка FakeIP в браузере</h3>
+  <img src="img/11.png" alt="FakeIP браузер не использует" class="screenshot">
+<p class="screenshot-caption">Браузер не использует FakeIP</p>
+  <p>Если диагностика показывает ошибку FakeIP, но серверы живые — проблема в настройках браузера или сетевого адаптера устройства. При данной ошибке заблокированные сервисы будут работать на других устройствах, подключённых к роутеру, но не на этом компьютере. Необходимо проверить и отключить <strong>«Безопасный DNS»</strong> в настройках браузера, а также проверить настройки DNS сетевого адаптера устройства.</p>
+  <div class="step-box">
+    <p><strong>Для Chrome</strong> — введите в адресную строку и нажмите Enter:</p>
+    <div class="code-block" style="margin-bottom:10px;"><pre>chrome://settings/security?search=dns</pre></div>
+    <p>Найдите пункт <strong>«Использовать защищённый DNS»</strong> и <strong>отключите его</strong>.</p>
+    <p><strong>Для других браузеров</strong> — зайдите в Настройки (значок ⚙️ или три точки в правом верхнем углу). В разделе «Конфиденциальность» или «Безопасность» найдите и отключите «Безопасный DNS» / «DNS over HTTPS».</p>
+    <p>После отключения:</p>
+    <ol>
+      <li>Полностью закройте и перезапустите браузер</li>
+      <li>Проверьте работу заблокированных сервисов</li>
+      <li>Откройте новую вкладку в режиме <strong>Инкогнито</strong> (Ctrl+Shift+N) и снова запустите <a href="#diagnostics" class="inline-link"><strong>диагностику</strong></a> в <a href="#web-interface" class="inline-link"><strong>веб-панели</strong></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CONNECTION -->
+<section class="section" id="connection">
+  <div class="section-header">
+    <span class="section-icon">🔗</span>
+    <h2>Подключение роутера</h2>
+  </div>
+  <p>Самый простой способ — поставить купленный роутер <strong>вторым</strong> после вашего основного роутера.</p>
+  <div class="step-box">
+    <ol>
+      <li>Вставьте один конец патч-корда в <strong>LAN-порт</strong> вашего основного роутера.<br><em>LAN-портов обычно несколько, они выделены цветом, отличным от WAN.</em></li>
+      <li>Второй конец — в <strong>WAN-порт</strong> купленного роутера.<br><em>WAN — порт для кабеля от провайдера. Он один и стоит отдельно.</em></li>
+    </ol>
+    <div class="alert alert-warn">
+      <span class="ai">⚠️</span>
+      <span class="ab">У модели <strong>Xiaomi AX3000T</strong> WAN-порт — крайний левый.</span>
+    </div>
+    <img src="img/12.png" alt="WAN порт Xiaomi AX3000T" class="screenshot">
+<p class="screenshot-caption">Задняя панель Xiaomi AX3000T — выделен WAN-порт</p>
+    <p>После соединения подключите блок питания. Через пару минут загорится <strong>синий светодиод</strong> — роутер готов к работе.</p>
+  </div>
+</section>
+
+<!-- WEB INTERFACE -->
+<section class="section" id="web-interface">
+  <div class="section-header">
+    <span class="section-icon">🖥️</span>
+    <h2>Веб-панель управления</h2>
+  </div>
+  <p>Подключитесь к Wi-Fi роутера (или соединитесь с ним через патч-корд), откройте любой браузер и перейдите по одному из адресов:</p>
+  <div class="alert alert-info">
+    <span class="ai">🌐</span>
+    <span class="ab">
+      <strong>Адрес 1:</strong> <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a><br>
+      <strong>Адрес 2:</strong> <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a><br>
+      <strong>Логин:</strong> <code>root</code><br>
+      <strong>Пароль:</strong> не задан — просто нажмите Log in
+    </span>
+  </div>
+  <img src="img/13.png" alt="Подключение к Wi-Fi и ввод адреса" class="screenshot">
+<p class="screenshot-caption">Подключаемся к сети роутера, вводим адрес в браузере</p>
+  <img src="img/14.png" alt="Страница авторизации" class="screenshot">
+<p class="screenshot-caption">Страница авторизации — пароль не нужен, нажимаем Log in</p>
+</section>
+
+<!-- PODKOP SETTINGS -->
+<section class="section" id="podkop-settings">
+  <div class="section-header">
+    <span class="section-icon">⚙️</span>
+    <h2>Настройки Podkop</h2>
+  </div>
+  <p>Этот пакет отвечает за выборочную маршрутизацию. Разберём ключевые параметры.</p>
+  <img src="img/15.png" alt="Основные параметры Podkop" class="screenshot">
+<p class="screenshot-caption">Основные параметры настройки Podkop</p>
+
+  <h3>Subscribe URL</h3>
+  <p>Этот параметр позволяет вставить ссылку подписки вашего VPN, купленного, например, в Telegram. После вставки ссылки подписки в строку <strong>Subscribe URL</strong> — нажмите кнопку <strong>«Получить»</strong> возле параметра «Получить конфигурации». Произойдёт загрузка доступных серверов в параметр <strong>«Доступные конфигурации»</strong> — после чего вы сможете добавить нужный сервер простым нажатием по нему.</p>
+  <img src="img/16.png" alt="Subscribe URL и конфигурации" class="screenshot">
+<p class="screenshot-caption">Subscribe URL — вставляем ссылку, получаем и выбираем конфигурации</p>
+
+  <h3>Списки сообщества</h3>
+  <p>Выбираете, трафик каких сервисов пускать через VPN. <strong>Russia inside</strong> уже выбран — это список большинства популярных заблокированных в России ресурсов. Нажмите <strong>Service list</strong>, чтобы добавить конкретные сервисы дополнительно.</p>
+  <img src="img/17.png" alt="Service list — списки" class="screenshot">
+<p class="screenshot-caption">Service list — доступные списки</p>
+
+  <h3>Пользовательские домены</h3>
+  <p>Добавьте свой домен, если его нет в списках сообщества. Домены, прописанные в этом параметре, будут открываться через VPN. Два способа:</p>
+  <ul style="padding-left:20px;margin-bottom:10px;">
+    <li><strong>Динамический список</strong> — добавляете домены по одному через кнопку «+»</li>
+    <li><strong>Текстовый список</strong> — вставляете сразу несколько через запятую или с новой строки</li>
+  </ul>
+  <img src="img/18.png" alt="Выбор типа списка доменов" class="screenshot">
+<p class="screenshot-caption">Выбор типа: Динамический или Текстовый список</p>
+  <img src="img/19.png" alt="Динамический список" class="screenshot">
+<p class="screenshot-caption">Динамический список — добавление по одному домену</p>
+  <img src="img/20.png" alt="Текстовый список" class="screenshot">
+<p class="screenshot-caption">Текстовый список — вставка нескольких доменов</p>
+
+  <h3>Полностью маршрутизируемые IP-адреса</h3>
+  <p>Укажите IP конкретного устройства, чтобы <strong>весь</strong> его трафик шёл через VPN. Чаще всего используется для подключения <a href="#gaming-mining" class="inline-link"><strong>игровых приставок или ASIC (майнинг-устройств)</strong></a>. Учтите: на этом устройстве не будут открываться банки и госсервисы.</p>
+  <img src="img/21.png" alt="Параметр Полностью маршрутизируемые IP-адреса" class="screenshot">
+<p class="screenshot-caption">Параметр «Полностью маршрутизируемые IP-адреса»</p>
+
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab"><strong>ОБЯЗАТЕЛЬНО:</strong> после любых изменений пролистайте страницу вниз и нажмите <code>Save & Apply</code> — иначе настройки не сохранятся.</span>
+  </div>
+  <img src="img/22.png" alt="Save & Apply" class="screenshot">
+<p class="screenshot-caption">После изменений обязательно нажимайте Save & Apply</p>
+</section>
+
+<!-- UPDATES -->
+<section class="section yellow-bg" id="updates">
+  <div class="section-header">
+    <span class="section-icon">🔄</span>
+    <h2>Обновление серверов</h2>
+  </div>
+  <div class="alert alert-success">
+    <span class="ai">✅</span>
+    <span class="ab"><strong>Когда нужно:</strong> заблокированные сайты перестали работать / нерабочие сервера — ошибка в диагностике «Прокси-трафик не маршрутизируется через FakeIP»</span>
+  </div>
+  <p>Обновление делается через SSH-терминал. На ПК — через <strong>Putty</strong>, на телефоне — любой SSH-клиент из магазина приложений.</p>
+  <div class="alert alert-warn-on-yellow">
+    <span class="ai">⚠️</span>
+    <span class="ab">Перед выполнением убедитесь, что вы подключены к купленному роутеру по Wi-Fi или по кабелю.</span>
+  </div>
+  <div class="step-box">
+    <ol>
+      <li>Скачайте Putty: <a href="https://putty.org.ru/files/putty-0.73-ru-17/putty.exe" class="inline-link"><strong>putty.exe</strong></a> — либо по любой ссылке из интернета</li>
+      <li>Запустите, в поле <strong>«Имя хоста (или IP-адрес)»</strong> введите <code>192.168.5.1</code>, нажмите <strong>«Соединиться»</strong></li>
+    </ol>
+    <img src="img/23.png" alt="Окно Putty" class="screenshot">
+<p class="screenshot-caption">Вводим IP 192.168.5.1 и нажимаем Соединиться</p>
+    <ol start="3">
+      <li>Появится окно предупреждения безопасности — нажмите <strong>«Да»</strong></li>
+    </ol>
+    <img src="img/24.png" alt="Предупреждение безопасности" class="screenshot">
+<p class="screenshot-caption">Нажимаем Да</p>
+    <ol start="4">
+      <li>На запрос <code>login as:</code> введите <code>root</code> и нажмите Enter<br>
+      <em>Если ранее задавали пароль — введите его (символы при вводе не отображаются)</em></li>
+    </ol>
+    <img src="img/25.png" alt="Ввод логина root" class="screenshot">
+<p class="screenshot-caption">Вводим root и нажимаем Enter</p>
+    <ol start="5">
+      <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
+    </ol>
+    <img src="img/26.png" alt="Вставка команды в терминал" class="screenshot">
+<p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
+  </div>
+  <div class="code-block">
+    <div class="code-label">Команда обновления серверов</div>
+    <button class="copy-btn" onclick="copyCmd()">Копировать</button>
+    <pre id="cmd-text">wget -qO- https://bit.ly/4290OrT | sh -s restart</pre>
+  </div>
+  <div class="alert alert-success">
+    <span class="ai">✅</span>
+    <span class="ab">При успешном обновлении серверов в консоли увидите соответствующее сообщение — <strong>«Сервера обновлены»</strong></span>
+  </div>
+  <img src="img/27.png" alt="Сервера обновлены" class="screenshot">
+<p class="screenshot-caption">Успешное обновление — сообщение «Сервера обновлены»</p>
+  <p>Серверы также можно обновить через загрузку бекапа прошивки — см. раздел <a href="#backups" class="inline-link"><strong>«Бекапы прошивки»</strong></a></p>
+</section>
+
+<!-- RESET -->
+<section class="section" id="reset">
+  <div class="section-header">
+    <span class="section-icon">🔁</span>
+    <h2>Сброс настроек и восстановление</h2>
+  </div>
+  <p>Если вы проводили эксперименты с роутером или изменяли настройки, после чего он перестал работать — перед загрузкой бекапа необходимо сделать полный сброс до заводских настроек.</p>
+  <div class="alert alert-danger">
+    <span class="ai">🚨</span>
+    <span class="ab"><strong>Внимание!</strong> После сброса все ваши личные настройки будут удалены: название Wi-Fi сетей, пароль, PPPoE и другие изменения. На роутере сохранится прошивка и всё необходимое программное обеспечение, НО серверов VPN не будет — их необходимо будет добавить: самостоятельно (при наличии), через <a href="#updates" class="inline-link"><strong>скрипт SSH</strong></a> или через загрузку <a href="#backups" class="inline-link"><strong>бекапа</strong></a></span>
+  </div>
+  <div class="alert alert-info">
+    <span class="ai">ℹ️</span>
+    <span class="ab">Если вы ничего не меняли и просто хотите обновить сервера — сброс делать не нужно, сразу переходите к загрузке <a href="#backups" class="inline-link"><strong>бекапа</strong></a></span>
+  </div>
+
+  <h3>Способ 1 — кнопка на корпусе роутера</h3>
+  <div class="step-box">
+    <ol>
+      <li>Найдите кнопку <strong>Reset</strong> на корпусе роутера — обычно это маленькое отверстие или небольшая кнопка сзади или снизу устройства</li>
+      <li>Возьмите скрепку или зубочистку и удерживайте кнопку <strong>10–15 секунд</strong> при включённом роутере</li>
+      <li>Роутер перезагрузится — светодиод начнёт мигать. Дождитесь полной загрузки (~2–3 минуты)</li>
+      <li>После сброса подключитесь к роутеру — названия Wi-Fi сетей и пароль прежние (как при покупке). Состояние роутера — как при покупке, но без прописанных серверов VPN</li>
+    </ol>
+  </div>
+
+  <h3>Способ 2 — через веб-панель</h3>
+  <div class="step-box">
+    <ol>
+      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> (<code>192.168.5.1</code>)</li>
+      <li>Перейдите: <strong>System → Backup / Flash Firmware</strong></li>
+    </ol>
+    <img src="img/28.png" alt="System → Backup / Flash Firmware" class="screenshot">
+<p class="screenshot-caption">Открываем System → Backup / Flash Firmware</p>
+    <ol start="3">
+      <li>Нажмите кнопку <strong>Perform reset</strong></li>
+    </ol>
+    <img src="img/29.png" alt="Кнопка Perform reset" class="screenshot">
+<p class="screenshot-caption">Нажимаем Perform reset</p>
+    <ol start="4">
+      <li>Подтвердите действие — нажмите <strong>OK</strong> — роутер перезагрузится</li>
+    </ol>
+    <img src="img/30.png" alt="Окно подтверждения сброса" class="screenshot">
+<p class="screenshot-caption">Нажимаем OK для подтверждения сброса</p>
+  </div>
+  <p>После сброса роутер готов к новым экспериментам, либо добавлению серверов через <a href="#updates" class="inline-link"><strong>скрипт</strong></a> или <a href="#backups" class="inline-link"><strong>бекап</strong></a></p>
+</section>
+
+<!-- BACKUPS -->
+<section class="section" id="backups">
+  <div class="section-header">
+    <span class="section-icon">💾</span>
+    <h2>Бекапы прошивки</h2>
+  </div>
+  <p>Бекапы — это готовые файлы прошивки с уже настроенной выборочной маршрутизацией и всеми параметрами как при покупке. Загрузка бекапа позволяет:</p>
+  <ul style="padding-left:20px;margin-bottom:12px;">
+    <li>Восстановить роутер после случайного сброса настроек</li>
+    <li><strong>Обновить серверы VPN</strong> — как альтернатива SSH-скрипту из раздела <a href="#updates" class="inline-link"><strong>«Обновление серверов»</strong></a></li>
+    <li>Вернуть роутер к первоначальному состоянию после любых экспериментов</li>
+  </ul>
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab"><strong>Учтите:</strong> если вы меняли название Wi-Fi сетей, пароль или другие настройки — после загрузки бекапа они будут сброшены. Роутер вернётся к настройкам как при покупке</span>
+  </div>
+  <div class="alert alert-danger">
+    <span class="ai">🚨</span>
+    <span class="ab"><strong>Важно!</strong> Загружайте бекап строго для своей модели роутера — файл от другой модели выведет устройство из строя. Если это всё же произошло — сделайте сброс через кнопку на корпусе (см. раздел <a href="#reset" class="inline-link"><strong>«Сброс»</strong></a> выше)</span>
+  </div>
+  <div class="backup-grid">
+    <div class="backup-card">
+      <div class="bname">Xiaomi AX3000T</div>
+      <a href="ССЫЛКА_AX3000T" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+    <div class="backup-card">
+      <div class="bname">Xiaomi Mi Router 4</div>
+      <a href="ССЫЛКА_MI4" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+    <div class="backup-card">
+      <div class="bname">SmartBox Turbo+</div>
+      <a href="ССЫЛКА_SMARTBOX" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+    <div class="backup-card">
+      <div class="bname">SmartBox GIGA</div>
+      <a href="ССЫЛКА_SMARTBOX_GIGA" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+  </div>
+
+  <h3>Как загрузить бекап</h3>
+  <div class="step-box">
+    <ol>
+      <li>Войдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> (<code>192.168.5.1</code>)</li>
+      <li>Перейдите: <strong>System → Backup / Flash Firmware</strong></li>
+    </ol>
+    <img src="img/31.png" alt="System → Backup / Flash Firmware" class="screenshot">
+<p class="screenshot-caption">Открываем System → Backup / Flash Firmware</p>
+    <ol start="3">
+      <li>Нажмите <strong>Upload archive...</strong></li>
+    </ol>
+    <img src="img/32.png" alt="Кнопка Upload archive" class="screenshot">
+<p class="screenshot-caption">Нажимаем Upload archive...</p>
+    <ol start="4">
+      <li>В открывшемся окне нажмите <strong>Browse...</strong> и выберите скачанный файл бекапа</li>
+    </ol>
+    <img src="img/33.png" alt="Окно выбора файла" class="screenshot">
+<p class="screenshot-caption">Нажимаем Browse и выбираем файл</p>
+    <img src="img/34.png" alt="Файл бекапа в папке" class="screenshot">
+<p class="screenshot-caption">Выбираем файл Backup-OpenWrt-«Модель_роутера».tar.gz</p>
+    <ol start="5">
+      <li>После выбора файла нажмите <strong>Upload</strong></li>
+    </ol>
+    <img src="img/35.png" alt="Нажимаем Upload" class="screenshot">
+<p class="screenshot-caption">Файл выбран — нажимаем Upload</p>
+    <ol start="6">
+      <li>Появится список файлов для восстановления — нажмите <strong>Continue</strong> для подтверждения</li>
+    </ol>
+    <img src="img/36.png" alt="Подтверждение — Continue" class="screenshot">
+<p class="screenshot-caption">Нажимаем Continue для завершения загрузки</p>
+    <ol start="7">
+      <li>Роутер перезагрузится (~3–5 минут). Дождитесь синего светодиода</li>
+      <li>Подключитесь к Wi-Fi и наслаждайтесь доступом к заблокированным сервисам. При необходимости: <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если не работает»</strong></a> или <a href="#diagnostics" class="inline-link"><strong>«Диагностика»</strong></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- GAMING / MINING -->
+<section class="section" id="gaming-mining">
+  <div class="section-header">
+    <span class="section-icon">🎮</span>
+    <h2>Игровые приставки / Майнинг-устройства</h2>
+  </div>
+  <p>Если вам нужно пустить весь трафик конкретного устройства через VPN (например, PlayStation, Xbox или ASIC (майнинг-устройство)) — используйте параметр <strong>«Полностью маршрутизируемые IP-адреса»</strong> в настройках Podkop.</p>
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab"><strong>Важно:</strong> устройство с прописанным IP будет работать полностью через VPN. Доступ к банкам, госсервисам и другим российским ресурсам с него может быть ограничен.</span>
+  </div>
+
+  <div class="step-box">
+    <ol>
+      <li>
+        <strong>Узнайте IP-адрес вашего устройства.</strong> IP-адрес устройства можно узнать через <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> — зайдите в неё и прокрутите страницу вниз, как показано ниже:
+      </li>
+    </ol>
+    <img src="img/37.gif" alt="IP устройства в веб-панели" class="screenshot">
+<p class="screenshot-caption">Прокручиваем страницу вниз для просмотра подключённых устройств</p>
+    <p>Далее необходимо присвоить устройству статичный (постоянный) IP-адрес. Для этого нажмите кнопку <strong>«Set Static»</strong> напротив вашего устройства:</p>
+    <img src="img/38.png" alt="Список устройств с кнопкой Set Static" class="screenshot">
+<p class="screenshot-caption">Нажимаем Set Static напротив нашего устройства</p>
+    <ol start="2">
+      <li>Нажмите кнопку <strong>«Save & Apply»</strong> для того чтобы сохранить и подтвердить действие. IP-адрес устройства при этом станет статическим (постоянным)</li>
+    </ol>
+    <img src="img/39.png" alt="Save & Apply для статического IP" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save & Apply для сохранения статического IP</p>
+    <ol start="3">
+      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> → <strong>Services → Podkop</strong></li>
+      <li>Найдите поле <strong>«Полностью маршрутизируемые IP-адреса»</strong>, впишите необходимый IP-адрес и добавьте его нажатием кнопки <strong>«+»</strong></li>
+    </ol>
+    <img src="img/40.png" alt="Поле маршрутизируемые IP с добавленным IP" class="screenshot">
+<p class="screenshot-caption">Вводим IP устройства и нажимаем «+»</p>
+    <ol start="5">
+      <li>После добавления необходимого IP-адреса <strong>ОБЯЗАТЕЛЬНО</strong> необходимо сохранить и применить настройки. Делается это путем нажатия соответствующей кнопки — <code>Save & Apply</code></li>
+    </ol>
+    <img src="img/41.png" alt="Save & Apply" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save & Apply для сохранения настроек</p>
+  </div>
+  <p>После сохранения всё устройство будет работать через VPN без дополнительных настроек на самой приставке или майнере.</p>
+</section>
+
+
+<!-- SERVER SWITCH -->
+<section class="section" id="server-switch">
+  <div class="section-header">
+    <span class="section-icon">🔀</span>
+    <h2>Смена серверов</h2>
+  </div>
+
+  <p>Как уже было сказано, на роутере прописано более 130 автообновляемых серверов VPN и стоит режим работы, осуществляющий автоматическое определение и подключение к серверу с наименьшей задержкой (ping). Однако иногда бывает так, что сервер с наименьшей задержкой оказывается и самым загруженным, ввиду чего видеосервисы могут загружаться дольше чем обычно. Либо бывают ситуации, когда определённому игровому, музыкальному или иному сервису требуется сервер определённой страны. В таком случае вы можете принудительно выбрать нужный вам сервер.</p>
+
+  <p>Для этого зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> и перейдите во вкладку <strong>Services → Podkop → Дашборд</strong>:</p>
+
+  <img src="img/1.png" alt="Services → Podkop" class="screenshot">
+<p class="screenshot-caption">Открываем Services → Podkop</p>
+  <img src="img/42.png" alt="Дашборд с серверами" class="screenshot">
+<p class="screenshot-caption">Вкладка Дашборд — список доступных серверов</p>
+
+  <p>Мы можем видеть, что сейчас выбран сервер — <strong>Самый быстрый</strong>, а ниже отображаются блоки с доступными серверами. При необходимости можете произвести тестирование задержки путём нажатия соответствующей кнопки — <strong>«Тестирование задержки»</strong>.</p>
+
+  <p>Для выбора конкретного сервера достаточно просто нажать на соответствующий блок — вокруг него появится синяя обводка, а с блока «Самый быстрый» синяя обводка пропадёт. Это значит, что вы успешно выбрали необходимый вам сервер.</p>
+
+  <img src="img/42.png" alt="Выбранный сервер с синей обводкой" class="screenshot">
+<p class="screenshot-caption">Выбранный сервер отмечен синей обводкой</p>
+</section>
+
+<!-- MAIN ROUTER SETUP -->
+<section class="section" id="main-router">
+  <div class="section-header">
+    <span class="section-icon">🌐</span>
+    <h2>Установка роутера как основного</h2>
+  </div>
+
+  <p>Если вы хотите установить купленный роутер как основной, прежде всего необходимо узнать у вашего провайдера интернета тип подключения и данные от него (при наличии). Вы можете это сделать позвонив провайдеру напрямую, либо задав соответствующий вопрос онлайн в службе поддержки или чат-боте. Ваш запрос может быть произвольным, например:</p>
+
+  <div class="alert alert-info">
+    <span class="ai">💬</span>
+    <span class="ab">«Я приобрел(а) новый роутер и хочу его самостоятельно установить заместо старого. Назовите тип подключения и предоставьте по нему все необходимые данные.»</span>
+  </div>
+
+  <p>После того как вы узнали данные — необходимо вставить интернет-кабель провайдера в <strong>WAN-порт</strong> приобретённого роутера. Убедитесь, что вы подключены к роутеру:</p>
+
+  <img src="img/13.png" alt="Подключение к роутеру" class="screenshot">
+<p class="screenshot-caption">Убедитесь, что подключены к роутеру по Wi-Fi или кабелю</p>
+
+  <p>После подключения можно приступать к настройкам. Прежде всего, <strong>перед всеми настройками интернет-соединения, настоятельно рекомендую отключить ВПН на роутере</strong>. Для этого выполните действия, описанные в разделе <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>.</p>
+
+  <p>Существует огромное множество типов подключения к интернету, но наиболее распространены следующие три: <strong>PPPoE</strong>, <strong>По MAC-адресу</strong> и <strong>DHCP (автоматический)</strong>. Также у провайдеров-операторов, например Билайн, подключение к интернету производится путём ввода логина и пароля на их специальном сайте (авторизация в личный кабинет). <strong>Важно:</strong> не путать данный тип подключения с PPPoE — о нём будет сказано ниже.</p>
+
+  <h3>PPPoE</h3>
+
+  <p>Для проведения настроек зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a>. Далее перейдите во вкладку сетевых настроек интерфейсов — <strong>Network → Interfaces</strong>:</p>
+
+  <img src="img/43.png" alt="Network → Interfaces" class="screenshot">
+<p class="screenshot-caption">Открываем Network → Interfaces</p>
+
+  <p>Здесь необходимо перейти в настройки WAN-интерфейса. Находим WAN-интерфейс (обычно второй по порядку) и нажимаем напротив него кнопку <strong>«Edit»</strong>:</p>
+
+  <img src="img/44.png" alt="Кнопка Edit у WAN интерфейса" class="screenshot">
+<p class="screenshot-caption">Нажимаем Edit напротив WAN-интерфейса</p>
+
+  <p>Здесь мы видим параметр <strong>«Protocol»</strong> — его нам и необходимо поменять. Нажимаем на текущий протокол <strong>«DHCP»</strong> для открытия перечня протоколов:</p>
+
+  <img src="img/45.png" alt="Выбор протокола" class="screenshot">
+<p class="screenshot-caption">Нажимаем на DHCP для смены протокола</p>
+
+  <p>Выбираем протокол <strong>PPPoE</strong> и подтверждаем смену нажатием кнопки <strong>«Switch Protocol»</strong>:</p>
+
+  <img src="img/46.png" alt="Выбор PPPoE и Switch Protocol" class="screenshot">
+<p class="screenshot-caption">Выбираем PPPoE и нажимаем Switch Protocol</p>
+
+  <p>После смены протокола необходимо заполнить данные подключения — <strong>логин</strong> («PAP/CHAP username») и <strong>пароль</strong> («PAP/CHAP password») в соответствующих полях:</p>
+
+  <img src="img/47.png" alt="Ввод логина и пароля PPPoE" class="screenshot">
+<p class="screenshot-caption">Вводим логин и пароль PPPoE подключения</p>
+
+  <p>Убедитесь, что ввели данные правильно. После — сохраните настройки нажатием кнопки <strong>«Save»</strong>:</p>
+
+  <img src="img/48.png" alt="Кнопка Save" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save для сохранения</p>
+
+  <p>Мы видим, что наши изменения сохранились. Чтобы они применились и прописались на роутере, необходимо нажать кнопку <strong>«Save & Apply»</strong>:</p>
+
+  <img src="img/49.png" alt="Save & Apply" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save & Apply для применения настроек</p>
+
+  <p>После сохранения и применения настроек необходимо подождать, пока появится интернет-соединение — вплоть до 5–7 минут.</p>
+
+  <div class="alert alert-success">
+    <span class="ai">✅</span>
+    <span class="ab">Когда обычный интернет появился на роутере — можно включать ВПН. Для этого выполните действия, описанные в разделе <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>.</span>
+  </div>
+
+  <h3>По MAC-адресу</h3>
+
+  <p>Данный тип подключения осуществляется на основе индивидуального сетевого идентификатора вашего роутера — MAC-адреса. Для того чтобы поставить приобретённый роутер как основной при данном типе подключения, необходимо подключить интернет-кабель провайдера в <strong>WAN-порт</strong> роутера и позвонить или написать провайдеру (Поддержка / Чат-бот) с просьбой изменить MAC-адрес подключения к интернету, так как вы приобрели и установили новый роутер.</p>
+
+  <p>В большинстве случаев интернет-соединение после просьбы появляется в течение 5 минут. Никаких изменений настроек в самом роутере этот тип подключения <strong>НЕ ТРЕБУЕТ</strong>.</p>
+
+  <h3>DHCP (автоматический)</h3>
+
+  <p>Данный тип подключения является автоматическим и уже стоит при покупке роутера. В таком случае вам нет необходимости ничего настраивать на роутере — нужно лишь вставить интернет-кабель провайдера в <strong>WAN-порт</strong>.</p>
+
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab">Как упоминалось ранее — настоятельно рекомендуется отключить ВПН на роутере при настройке интернет-соединения. См. раздел <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>.</span>
+  </div>
+
+  <h3>Провайдеры-операторы (Билайн и подобные)</h3>
+
+  <p>Данные операторы чаще всего предоставляют автоматический тип подключения — DHCP — то есть на самом роутере ничего настраивать не нужно, но они требуют авторизации на своём специализированном сайте. Страница авторизации открывается по предоставленному адресу, либо открывается сама при подключении интернет-кабеля провайдера в WAN-порт роутера.</p>
+
+  <div class="step-box">
+    <p><strong>Если страница авторизации не открывается:</strong></p>
+    <ol>
+      <li>Проверьте, отключили ли вы ВПН на роутере (см. раздел <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>)</li>
+      <li>Если и после отключения ВПН страница не открывается — необходимо сбросить настройки роутера (см. раздел <a href="#reset" class="inline-link"><strong>«Сброс и восстановление»</strong></a>). После сброса страница авторизации должна открыться</li>
+      <li>Если страница по-прежнему не открывается — проблема на стороне провайдера, обратитесь в их поддержку</li>
+    </ol>
+  </div>
+
+  <div class="alert alert-success">
+    <span class="ai">✅</span>
+    <span class="ab">После успешной авторизации и настройки интернета выполните восстановление серверов с помощью <a href="#updates" class="inline-link"><strong>скрипта</strong></a> или <a href="#backups" class="inline-link"><strong>бекапа</strong></a>.</span>
+  </div>
+
+</section>
+
+
+<!-- WIFI SETTINGS -->
+<section class="section" id="wifi-settings">
+  <div class="section-header">
+    <span class="section-icon">📡</span>
+    <h2>Изменение названия и пароля Wi-Fi сетей</h2>
+  </div>
+
+  <p>Для того чтобы изменить название и пароль Wi-Fi сетей, необходимо войти в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a>. Далее перейдите во вкладку управления беспроводными сетями — <strong>Network → Wireless</strong>:</p>
+
+  <img src="img/50.png" alt="Network → Wireless" class="screenshot">
+<p class="screenshot-caption">Открываем Network → Wireless</p>
+
+  <p>Открывается страница настроек беспроводных интерфейсов. Здесь видим две сети — <strong>OpenWrt</strong> и <strong>OpenWrt-5g</strong>. Для изменения настроек каждой из них необходимо нажать кнопку <strong>«Edit»</strong>:</p>
+
+  <img src="img/51.png" alt="Кнопка Edit у Wi-Fi сети" class="screenshot">
+<p class="screenshot-caption">Нажимаем Edit напротив нужной сети</p>
+
+  <p>Мы в окне изменения настроек Wi-Fi сети. Название сети задаётся в параметре <strong>ESSID</strong> — вместо стандартного <code>OpenWrt</code> можете вписать своё:</p>
+
+  <img src="img/52.png" alt="Параметр ESSID — название сети" class="screenshot">
+<p class="screenshot-caption">Параметр ESSID — вводим желаемое название сети</p>
+
+  <p>Для изменения пароля необходимо перейти во вкладку <strong>«Network Security»</strong> и в параметре <strong>«Key»</strong> вписать желаемый пароль:</p>
+
+  <img src="img/53.png" alt="Вкладка Network Security — параметр Key" class="screenshot">
+<p class="screenshot-caption">Вкладка Network Security — вводим новый пароль в поле Key</p>
+
+  <p>После всех настроек Wi-Fi сети сохраните их нажатием кнопки <strong>«Save»</strong>:</p>
+
+  <img src="img/54.png" alt="Кнопка Save" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save для сохранения настроек сети</p>
+
+  <p>После внесения и сохранения всех необходимых настроек — примените их нажатием кнопки <strong>«Save & Apply»</strong>:</p>
+
+  <img src="img/55.png" alt="Кнопка Save & Apply" class="screenshot">
+<p class="screenshot-caption">Нажимаем Save & Apply для применения настроек</p>
+
+  <div class="alert alert-danger">
+    <span class="ai">🚨</span>
+    <span class="ab"><strong>ВАЖНО!</strong> После применения настроек ваше устройство автоматически отключится от роутера — так как название и пароль сети изменились. В течение <strong>полутора минут</strong> найдите Wi-Fi сеть с новым названием и подключитесь к ней с новым паролем. Если не успеете — изменения сбросятся и настройки вернутся к прежним. Вам также высветится предупреждение о возврате настроек.</span>
+  </div>
+
+  <p>Если вы хотите применить настройки <strong>без проверки подключения</strong> — нажмите красную кнопку <strong>«Apply unchecked»</strong>. В этом случае не нужно успевать подключаться в течение времени — настройки применятся сразу и навсегда:</p>
+
+  <img src="img/56.png" alt="Кнопка Apply unchecked" class="screenshot">
+<p class="screenshot-caption">Кнопка «Apply unchecked» — применить без проверки подключения</p>
+</section>
+
+<footer>
+  <p>© 2026 Руководство пользователя · Спасибо за покупку!</p>
+</footer>
+</div>
+</div>
+
+<script>
+function toggleNav(){document.getElementById('mobMenu').classList.toggle('open');}
+function closeNav(){document.getElementById('mobMenu').classList.remove('open');}
+function copyCmd(){
+  const t=document.getElementById('cmd-text').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=document.querySelector('.copy-btn');
+    b.textContent='✓ Скопировано';b.style.background='#16a34a';b.style.color='#fff';
+    setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
+  });
+}
+const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings'};
+const links=document.querySelectorAll('.sidenav a');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && navMap[e.target.id]){
+      links.forEach(a=>a.classList.remove('active'));
+      const a=document.querySelector(`.sidenav a[href="${navMap[e.target.id]}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{rootMargin:'-10% 0px -60% 0px',threshold:0});
+document.querySelectorAll('[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
