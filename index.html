@@ -80,6 +80,53 @@ code{background:#f1f5f9;border:1px solid var(--border);padding:2px 7px;border-ra
 p{margin-bottom:10px;}
 footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px;}
 @media(max-width:768px){.sidenav{display:none;}.mobile-bar{display:block;}.main{margin-left:0;}.content{padding:16px 14px 60px;}.hero{padding:24px 20px;}.wifi-block{padding:20px 18px;}.section{padding:20px 16px;}.wifi-val.pw{font-size:16px;}}
+
+.avito-accounts {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.avito-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.avito-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.avito-col {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 13px;
+}
+.avito-col-header {
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.avito-col-header.blocked {
+  background: #fef2f2;
+  color: #dc2626;
+}
+.avito-col-header.live {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+.avito-col-body {
+  padding: 10px 14px;
+}
+.avito-col-body p {
+  margin-bottom: 4px;
+  color: var(--text);
+}
 </style>
 </head>
 <body>
@@ -271,7 +318,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
       <span class="ai">⚠️</span>
       <span class="ab">У модели <strong>Xiaomi AX3000T</strong> WAN-порт — крайний левый.</span>
     </div>
-    <img src="img/12.png" alt="WAN порт Xiaomi AX3000T" class="screenshot">
+    <img src="img/5456327024529052830.jpg" alt="WAN порт Xiaomi AX3000T" class="screenshot">
 <p class="screenshot-caption">Задняя панель Xiaomi AX3000T — выделен WAN-порт</p>
     <p>После соединения подключите блок питания. Через пару минут загорится <strong>синий светодиод</strong> — роутер готов к работе.</p>
   </div>
@@ -491,29 +538,29 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
       <li>Войдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> (<code>192.168.5.1</code>)</li>
       <li>Перейдите: <strong>System → Backup / Flash Firmware</strong></li>
     </ol>
-    <img src="img/31.png" alt="System → Backup / Flash Firmware" class="screenshot">
+    <img src="img/28.png" alt="System → Backup / Flash Firmware" class="screenshot">
 <p class="screenshot-caption">Открываем System → Backup / Flash Firmware</p>
     <ol start="3">
       <li>Нажмите <strong>Upload archive...</strong></li>
     </ol>
-    <img src="img/32.png" alt="Кнопка Upload archive" class="screenshot">
+    <img src="img/31.png" alt="Кнопка Upload archive" class="screenshot">
 <p class="screenshot-caption">Нажимаем Upload archive...</p>
     <ol start="4">
       <li>В открывшемся окне нажмите <strong>Browse...</strong> и выберите скачанный файл бекапа</li>
     </ol>
-    <img src="img/33.png" alt="Окно выбора файла" class="screenshot">
+    <img src="img/32.png" alt="Окно выбора файла" class="screenshot">
 <p class="screenshot-caption">Нажимаем Browse и выбираем файл</p>
-    <img src="img/34.png" alt="Файл бекапа в папке" class="screenshot">
+    <img src="img/33.png" alt="Файл бекапа в папке" class="screenshot">
 <p class="screenshot-caption">Выбираем файл Backup-OpenWrt-«Модель_роутера».tar.gz</p>
     <ol start="5">
       <li>После выбора файла нажмите <strong>Upload</strong></li>
     </ol>
-    <img src="img/35.png" alt="Нажимаем Upload" class="screenshot">
+    <img src="img/34.png" alt="Нажимаем Upload" class="screenshot">
 <p class="screenshot-caption">Файл выбран — нажимаем Upload</p>
     <ol start="6">
       <li>Появится список файлов для восстановления — нажмите <strong>Continue</strong> для подтверждения</li>
     </ol>
-    <img src="img/36.png" alt="Подтверждение — Continue" class="screenshot">
+    <img src="img/35.png" alt="Подтверждение — Continue" class="screenshot">
 <p class="screenshot-caption">Нажимаем Continue для завершения загрузки</p>
     <ol start="7">
       <li>Роутер перезагрузится (~3–5 минут). Дождитесь синего светодиода</li>
@@ -540,26 +587,26 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
         <strong>Узнайте IP-адрес вашего устройства.</strong> IP-адрес устройства можно узнать через <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> — зайдите в неё и прокрутите страницу вниз, как показано ниже:
       </li>
     </ol>
-    <img src="img/37.gif" alt="IP устройства в веб-панели" class="screenshot">
+    <img src="img/36.gif" alt="IP устройства в веб-панели" class="screenshot">
 <p class="screenshot-caption">Прокручиваем страницу вниз для просмотра подключённых устройств</p>
     <p>Далее необходимо присвоить устройству статичный (постоянный) IP-адрес. Для этого нажмите кнопку <strong>«Set Static»</strong> напротив вашего устройства:</p>
-    <img src="img/38.png" alt="Список устройств с кнопкой Set Static" class="screenshot">
+    <img src="img/37.png" alt="Список устройств с кнопкой Set Static" class="screenshot">
 <p class="screenshot-caption">Нажимаем Set Static напротив нашего устройства</p>
     <ol start="2">
       <li>Нажмите кнопку <strong>«Save & Apply»</strong> для того чтобы сохранить и подтвердить действие. IP-адрес устройства при этом станет статическим (постоянным)</li>
     </ol>
-    <img src="img/39.png" alt="Save & Apply для статического IP" class="screenshot">
+    <img src="img/38.png" alt="Save & Apply для статического IP" class="screenshot">
 <p class="screenshot-caption">Нажимаем Save & Apply для сохранения статического IP</p>
     <ol start="3">
       <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> → <strong>Services → Podkop</strong></li>
       <li>Найдите поле <strong>«Полностью маршрутизируемые IP-адреса»</strong>, впишите необходимый IP-адрес и добавьте его нажатием кнопки <strong>«+»</strong></li>
     </ol>
-    <img src="img/40.png" alt="Поле маршрутизируемые IP с добавленным IP" class="screenshot">
+    <img src="img/39.png" alt="Поле маршрутизируемые IP с добавленным IP" class="screenshot">
 <p class="screenshot-caption">Вводим IP устройства и нажимаем «+»</p>
     <ol start="5">
       <li>После добавления необходимого IP-адреса <strong>ОБЯЗАТЕЛЬНО</strong> необходимо сохранить и применить настройки. Делается это путем нажатия соответствующей кнопки — <code>Save & Apply</code></li>
     </ol>
-    <img src="img/41.png" alt="Save & Apply" class="screenshot">
+    <img src="img/40.png" alt="Save & Apply" class="screenshot">
 <p class="screenshot-caption">Нажимаем Save & Apply для сохранения настроек</p>
   </div>
   <p>После сохранения всё устройство будет работать через VPN без дополнительных настроек на самой приставке или майнере.</p>
@@ -579,7 +626,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 
   <img src="img/1.png" alt="Services → Podkop" class="screenshot">
 <p class="screenshot-caption">Открываем Services → Podkop</p>
-  <img src="img/42.png" alt="Дашборд с серверами" class="screenshot">
+  <img src="img/41.png" alt="Дашборд с серверами" class="screenshot">
 <p class="screenshot-caption">Вкладка Дашборд — список доступных серверов</p>
 
   <p>Мы можем видеть, что сейчас выбран сервер — <strong>Самый быстрый</strong>, а ниже отображаются блоки с доступными серверами. При необходимости можете произвести тестирование задержки путём нажатия соответствующей кнопки — <strong>«Тестирование задержки»</strong>.</p>
@@ -609,7 +656,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   <img src="img/13.png" alt="Подключение к роутеру" class="screenshot">
 <p class="screenshot-caption">Убедитесь, что подключены к роутеру по Wi-Fi или кабелю</p>
 
-  <p>После подключения можно приступать к настройкам. Прежде всего, <strong>перед всеми настройками интернет-соединения, настоятельно рекомендую отключить ВПН на роутере</strong>. Для этого выполните действия, описанные в разделе <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>.</p>
+  <p>После подключения можно приступать к настройкам. Прежде всего, <strong>перед всеми настройками интернет-соединения, настоятельно рекомендуется отключить ВПН на роутере</strong>. Для этого выполните действия, описанные в разделе <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a> → пункт <a href="#troubleshooting" class="inline-link"><strong>«2. Не работает даже обычный интернет»</strong></a>.</p>
 
   <p>Существует огромное множество типов подключения к интернету, но наиболее распространены следующие три: <strong>PPPoE</strong>, <strong>По MAC-адресу</strong> и <strong>DHCP (автоматический)</strong>. Также у провайдеров-операторов, например Билайн, подключение к интернету производится путём ввода логина и пароля на их специальном сайте (авторизация в личный кабинет). <strong>Важно:</strong> не путать данный тип подключения с PPPoE — о нём будет сказано ниже.</p>
 
@@ -743,6 +790,25 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 
 <footer>
   <p>© 2026 Руководство пользователя · Спасибо за покупку!</p>
+  <div class="avito-accounts">
+    <p class="avito-title">Авито аккаунты:</p>
+    <div class="avito-cols">
+      <div class="avito-col">
+        <div class="avito-col-header blocked">🚫 Заблокированные Роскомнадзором</div>
+        <div class="avito-col-body">
+          <p>Алексей</p>
+          <p>Алексей 2</p>
+        </div>
+      </div>
+      <div class="avito-col">
+        <div class="avito-col-header live">✅ Живые</div>
+        <div class="avito-col-body">
+          <p>Алексей 3</p>
+          <p>Алексей 4</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 </div>
 </div>
