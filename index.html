@@ -127,6 +127,47 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   margin-bottom: 4px;
   color: var(--text);
 }
+
+.model-4a-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #eff6ff;
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.model-4a-banner:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+.model-4a-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.model-4a-banner div {
+  flex: 1;
+}
+.model-4a-banner strong {
+  display: block;
+  font-size: 15px;
+  color: #1e40af;
+  margin-bottom: 2px;
+}
+.model-4a-banner span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.model-4a-arrow {
+  font-size: 20px;
+  color: #2563eb;
+  font-weight: 700;
+  flex-shrink: 0;
+}
 </style>
 </head>
 <body>
@@ -151,6 +192,8 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#server-switch"><span class="ni">🔀</span> Смена серверов</a>
     <a href="#main-router"><span class="ni">🌐</span> Роутер как основной</a>
     <a href="#wifi-settings"><span class="ni">📡</span> Смена названия и пароля Wi-Fi</a>
+    <div class="nav-divider"></div>
+    <a href="#xiaomi-4a"><span class="ni">📦</span> Xiaomi 4A GIGABIT</a>
   </nav>
 </aside>
 
@@ -170,6 +213,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#server-switch" onclick="closeNav()">🔀 Смена серверов</a>
     <a href="#main-router" onclick="closeNav()">🌐 Роутер как основной</a>
     <a href="#wifi-settings" onclick="closeNav()">📡 Смена названия и пароля Wi-Fi</a>
+    <a href="#xiaomi-4a" onclick="closeNav()">📦 Xiaomi 4A GIGABIT</a>
   </div>
 </div>
 
@@ -210,6 +254,15 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <h3>1. Проверка физического подключения</h3>
     <p>Прежде всего убедитесь, что всё правильно подключено — см. раздел <a href="#connection" class="inline-link"><strong>«Подключение»</strong></a>. Если подключение верное, но роутер не работает — <strong>просто перезагрузите его</strong>: вытащите вилку питания и вставьте обратно. В большинстве случаев это помогает.</p>
   </div>
+
+  <a href="#xiaomi-4a" class="model-4a-banner">
+    <span class="model-4a-icon">📦</span>
+    <div>
+      <strong>У вас Xiaomi 4A GIGABIT?</strong>
+      <span>Для этой модели — отдельная инструкция по устранению неполадок</span>
+    </div>
+    <span class="model-4a-arrow">→</span>
+  </a>
 
   <div class="step-box">
     <h3>2. Не работает даже обычный интернет</h3>
@@ -516,19 +569,19 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   <div class="backup-grid">
     <div class="backup-card">
       <div class="bname">Xiaomi AX3000T</div>
-      <a href="ССЫЛКА_AX3000T" class="dl-btn" target="_blank">⬇ Скачать</a>
+      <a href="https://drive.google.com/file/d/1vrODBbAVSN5KilV8lXeuAWFhyFuRGhIC/view?usp=sharing" class="dl-btn" target="_blank">⬇ Скачать</a>
     </div>
     <div class="backup-card">
       <div class="bname">Xiaomi Mi Router 4</div>
-      <a href="ССЫЛКА_MI4" class="dl-btn" target="_blank">⬇ Скачать</a>
+      <a href="https://drive.google.com/file/d/18QnFF-lPz539noIHwvQM0vqChrQ966Fz/view?usp=sharing" class="dl-btn" target="_blank">⬇ Скачать</a>
     </div>
     <div class="backup-card">
       <div class="bname">SmartBox Turbo+</div>
-      <a href="ССЫЛКА_SMARTBOX" class="dl-btn" target="_blank">⬇ Скачать</a>
+      <a href="https://drive.google.com/file/d/1IznDqsDYHMTGGW6l1kTHpeFgk5lvMWP5/view?usp=sharing" class="dl-btn" target="_blank">⬇ Скачать</a>
     </div>
     <div class="backup-card">
       <div class="bname">SmartBox GIGA</div>
-      <a href="ССЫЛКА_SMARTBOX_GIGA" class="dl-btn" target="_blank">⬇ Скачать</a>
+      <a href="https://drive.google.com/file/d/19VwbDcgcOFX7AFQnKADN1wEI5DTtUsg_/view?usp=sharing" class="dl-btn" target="_blank">⬇ Скачать</a>
     </div>
   </div>
 
@@ -788,6 +841,59 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 <p class="screenshot-caption">Кнопка «Apply unchecked» — применить без проверки подключения</p>
 </section>
 
+
+<!-- 4A GIGABIT -->
+<section class="section" id="xiaomi-4a">
+  <div class="section-header">
+    <span class="section-icon">📦</span>
+    <h2>Если у вас модель Xiaomi 4A GIGABIT</h2>
+  </div>
+
+  <p>Данная модель является минимальной для умной выборочной маршрутизации. Ввиду её технических характеристик на ней стоит более старое программное обеспечение, исключающее возможность:</p>
+  <ul style="padding-left:20px;margin-bottom:14px;">
+    <li>Автоматического выбора сервера с наименьшей задержкой (пинг)</li>
+    <li>Поддержки 130+ серверов и автообновления</li>
+    <li>Поддержки собственных купленных подписок</li>
+    <li>Расширенной диагностики</li>
+  </ul>
+
+  <p>Умная выборочная маршрутизация производится всё так же за счёт VPN — а именно протокола <strong>VLESS</strong>. Подключение осуществляется за счёт строки подключения к серверу типа <code>vless://...</code></p>
+
+  <p>Для настроек необходимо зайти в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a>, а далее перейти во вкладку <strong>Services → Podkop</strong>:</p>
+
+  <img src="img/1.png" alt="Services → Podkop" class="screenshot">
+<p class="screenshot-caption">Открываем Services → Podkop</p>
+
+  <p>В отличии от поддержки подписок и множества серверов с удобным выбором, на 4A GIGABIT вы можете вставить только <strong>одну ссылку подключения</strong> — один сервер:</p>
+
+  <img src="img/57.png" alt="Поле ввода vless ссылки на 4A GIGABIT" class="screenshot">
+<p class="screenshot-caption">Поле для вставки ссылки подключения vless://...</p>
+
+  <h3>Подключение игровых консолей и майнинг-устройств</h3>
+
+  <p>Для полной маршрутизации конкретного устройства через VPN имеется параметр <strong>«Принудительные прокси IP»</strong> — аналог параметра «Полностью маршрутизируемые IP-адреса» на других моделях:</p>
+
+  <img src="img/58.png" alt="Параметр Принудительные прокси IP" class="screenshot">
+<p class="screenshot-caption">Параметр «Принудительные прокси IP»</p>
+
+  <p>Для добавления IP-адресов устройств необходимо поставить галочку для включения данного параметра — после чего появится поле ввода, где IP-адреса вводятся и добавляются нажатием кнопки <strong>«+»</strong>:</p>
+
+  <img src="img/59.png" alt="Поле ввода IP адресов с кнопкой +" class="screenshot">
+<p class="screenshot-caption">Включаем параметр, вводим IP и добавляем нажатием «+»</p>
+
+  <h3>Диагностика</h3>
+
+  <p>Вкладка Диагностика на данной модели отличается — диагностику нет необходимости запускать вручную, она проводится и проверяет состояние постоянно. На скриншоте ниже — пример корректно функционирующего роутера:</p>
+
+  <img src="img/60.png" alt="Диагностика 4A GIGABIT — всё работает" class="screenshot">
+<p class="screenshot-caption">Диагностика в режиме постоянного мониторинга — роутер работает корректно</p>
+
+  <p>Если после подключения роутера не работают заблокированные сервисы или отсутствует интернет — нажмите кнопку <strong>«Перезапустить Podkop»</strong>:</p>
+
+  <img src="img/61.png" alt="Кнопка Перезапустить Podkop" class="screenshot">
+<p class="screenshot-caption">Нажимаем «Перезапустить Podkop»</p>
+</section>
+
 <footer>
   <p>© 2026 Руководство пользователя · Спасибо за покупку!</p>
   <div class="avito-accounts">
@@ -824,7 +930,7 @@ function copyCmd(){
     setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
   });
 }
-const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings'};
+const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a'};
 const links=document.querySelectorAll('.sidenav a');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
