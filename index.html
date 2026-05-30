@@ -72,61 +72,17 @@ code{background:#f1f5f9;border:1px solid var(--border);padding:2px 7px;border-ra
 .screenshot{width:100%;border-radius:9px;border:1px solid var(--border);margin:12px 0 3px;display:block;}
 .screenshot-caption{text-align:center;font-size:11.5px;color:var(--muted);margin-bottom:12px;font-style:italic;}
 .img-placeholder{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:10px;padding:18px;text-align:center;margin:12px 0;color:#94a3b8;font-size:13px;}
-.backup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0;}
-.backup-card{border:1px solid var(--border);border-radius:11px;padding:16px;display:flex;flex-direction:column;gap:9px;background:#fafafa;}
+.backup-grid-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px;}
+.backup-grid-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0 0 14px;}
+@media(max-width:580px){.backup-grid-top{grid-template-columns:1fr 1fr;}.backup-grid-bottom{grid-template-columns:1fr 1fr;}}
+.backup-card{border:1px solid var(--border);border-radius:11px;padding:16px;display:flex;flex-direction:column;gap:9px;background:#fafafa;align-items:center;text-align:center;}
 .backup-card .bname{font-weight:700;font-size:13.5px;}
-.dl-btn{display:inline-flex;align-items:center;gap:5px;background:#16a34a;color:#fff;font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:7px;text-decoration:none;transition:opacity .15s;align-self:flex-start;}
+.dl-btn{display:inline-flex;align-items:center;gap:5px;background:#16a34a;color:#fff;font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:7px;text-decoration:none;transition:opacity .15s;align-self:center;}
 .dl-btn:hover{opacity:.85;}
 p{margin-bottom:10px;}
 footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px;}
 @media(max-width:768px){.sidenav{display:none;}.mobile-bar{display:block;}.main{margin-left:0;}.content{padding:16px 14px 60px;}.hero{padding:24px 20px;}.wifi-block{padding:20px 18px;}.section{padding:20px 16px;}.wifi-val.pw{font-size:16px;}}
 
-.avito-accounts {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-}
-.avito-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.avito-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-.avito-col {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 13px;
-}
-.avito-col-header {
-  padding: 8px 14px;
-  font-weight: 600;
-  font-size: 12px;
-}
-.avito-col-header.blocked {
-  background: #fef2f2;
-  color: #dc2626;
-}
-.avito-col-header.live {
-  background: #f0fdf4;
-  color: #16a34a;
-}
-.avito-col-body {
-  padding: 10px 14px;
-}
-.avito-col-body p {
-  margin-bottom: 4px;
-  color: var(--text);
-}
 
 .model-4a-banner {
   display: flex;
@@ -168,6 +124,39 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   font-weight: 700;
   flex-shrink: 0;
 }
+
+.methods-list {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.method-item {
+  font-size: 14px;
+  padding-left: 8px;
+  color: var(--text);
+}
+
+.backup-grid-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0 10px;
+}
+.backup-grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 14px;
+}
+@media(max-width:600px) {
+  .backup-grid-top { grid-template-columns: 1fr 1fr; }
+  .backup-grid-bottom { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -194,6 +183,8 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#wifi-settings"><span class="ni">📡</span> Смена названия и пароля Wi-Fi</a>
     <div class="nav-divider"></div>
     <a href="#xiaomi-4a"><span class="ni">📦</span> Xiaomi 4A GIGABIT</a>
+    <div class="nav-divider"></div>
+    <a href="#avito-rkn"><span class="ni">📋</span> Авито и Роскомнадзор</a>
   </nav>
 </aside>
 
@@ -214,6 +205,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#main-router" onclick="closeNav()">🌐 Роутер как основной</a>
     <a href="#wifi-settings" onclick="closeNav()">📡 Смена названия и пароля Wi-Fi</a>
     <a href="#xiaomi-4a" onclick="closeNav()">📦 Xiaomi 4A GIGABIT</a>
+    <a href="#avito-rkn" onclick="closeNav()">📋 Авито и Роскомнадзор</a>
   </div>
 </div>
 
@@ -451,15 +443,49 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <span class="section-icon">🔄</span>
     <h2>Обновление серверов</h2>
   </div>
+
   <div class="alert alert-success">
     <span class="ai">✅</span>
     <span class="ab"><strong>Когда нужно:</strong> заблокированные сайты перестали работать / нерабочие сервера — ошибка в диагностике «Прокси-трафик не маршрутизируется через FakeIP»</span>
   </div>
-  <p>Обновление делается через SSH-терминал. На ПК — через <strong>Putty</strong>, на телефоне — любой SSH-клиент из магазина приложений.</p>
+
+  <p>Обновление серверов возможно несколькими способами:</p>
+  <div class="methods-list">
+    <div class="method-item">— Через загрузку <a href="#backups" class="inline-link"><strong>«Бекапы прошивки»</strong></a></div>
+    <div class="method-item">— Через нажатие кнопки <strong>«Обновление серверов»</strong></div>
+    <div class="method-item">— Через скрипт</div>
+  </div>
+
+  <p style="margin-top:14px;">Загрузка бекапа рассматривается в <a href="#backups" class="inline-link"><strong>«Бекапы прошивки»</strong></a>. Обновление серверов посредством нажатия соответствующей кнопки или выполнения скрипта будет рассмотрено далее в этой главе.</p>
+
   <div class="alert alert-warn-on-yellow">
     <span class="ai">⚠️</span>
-    <span class="ab">Перед выполнением убедитесь, что вы подключены к купленному роутеру по Wi-Fi или по кабелю.</span>
+    <span class="ab">Перед выполнением убедитесь, что вы подключены к купленному роутеру по Wi-Fi или по кабелю, а также что на роутере есть интернет!</span>
   </div>
+
+  <h3>Способ 1 — кнопка «Обновление серверов»</h3>
+
+  <div class="step-box">
+    <ol>
+      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+      <li>Перейдите во вкладку <strong>Services → Podkop → Дашборд</strong> (подробнее — в разделе <a href="#server-switch" class="inline-link"><strong>«Смена серверов»</strong></a>). Нажмите кнопку <strong>«Обновить сервера»</strong></li>
+    </ol>
+    <img src="img/62.png" alt="Кнопка Обновить сервера" class="screenshot">
+<p class="screenshot-caption">Нажимаем кнопку «Обновить сервера» во вкладке Дашборд</p>
+    <ol start="3">
+      <li>После успешного обновления серверов увидите соответствующую надпись и количество обновлённых серверов</li>
+    </ol>
+    <img src="img/63.png" alt="Успешное обновление через кнопку" class="screenshot">
+<p class="screenshot-caption">Успешное обновление — надпись с количеством обновлённых серверов</p>
+    <ol start="4">
+      <li>Если интернета на роутере нет — будет соответствующая ошибка и сервера не обновятся. Проверьте подключение к интернету и при необходимости восстановите его по разделу <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a></li>
+    </ol>
+    <img src="img/64.png" alt="Ошибка обновления — нет интернета" class="screenshot">
+<p class="screenshot-caption">Ошибка обновления при отсутствии интернета на роутере</p>
+  </div>
+
+  <h3>Способ 2 — скрипт через SSH</h3>
+
   <div class="step-box">
     <ol>
       <li>Скачайте Putty: <a href="https://putty.org.ru/files/putty-0.73-ru-17/putty.exe" class="inline-link"><strong>putty.exe</strong></a> — либо по любой ссылке из интернета</li>
@@ -484,18 +510,19 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <img src="img/26.png" alt="Вставка команды в терминал" class="screenshot">
 <p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
   </div>
+
   <div class="code-block">
     <div class="code-label">Команда обновления серверов</div>
     <button class="copy-btn" onclick="copyCmd()">Копировать</button>
     <pre id="cmd-text">wget -qO- https://bit.ly/4290OrT | sh -s restart</pre>
   </div>
+
   <div class="alert alert-success">
     <span class="ai">✅</span>
     <span class="ab">При успешном обновлении серверов в консоли увидите соответствующее сообщение — <strong>«Сервера обновлены»</strong></span>
   </div>
   <img src="img/27.png" alt="Сервера обновлены" class="screenshot">
 <p class="screenshot-caption">Успешное обновление — сообщение «Сервера обновлены»</p>
-  <p>Серверы также можно обновить через загрузку бекапа прошивки — см. раздел <a href="#backups" class="inline-link"><strong>«Бекапы прошивки»</strong></a></p>
 </section>
 
 <!-- RESET -->
@@ -566,11 +593,17 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <span class="ai">🚨</span>
     <span class="ab"><strong>Важно!</strong> Загружайте бекап строго для своей модели роутера — файл от другой модели выведет устройство из строя. Если это всё же произошло — сделайте сброс через кнопку на корпусе (см. раздел <a href="#reset" class="inline-link"><strong>«Сброс»</strong></a> выше)</span>
   </div>
-  <div class="backup-grid">
+  <div class="backup-grid-top">
     <div class="backup-card">
       <div class="bname">Xiaomi AX3000T</div>
       <a href="https://drive.google.com/uc?export=download&id=1vrODBbAVSN5KilV8lXeuAWFhyFuRGhIC" class="dl-btn" target="_blank">⬇ Скачать</a>
     </div>
+    <div class="backup-card">
+      <div class="bname">Cudy WBR3000UAX</div>
+      <a href="https://drive.google.com/uc?export=download&id=1uyZ4paPc1fSSuvfa-AFd-gBlnRDXZpFd" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+  </div>
+  <div class="backup-grid-bottom">
     <div class="backup-card">
       <div class="bname">Xiaomi Mi Router 4</div>
       <a href="https://drive.google.com/uc?export=download&id=18QnFF-lPz539noIHwvQM0vqChrQ966Fz" class="dl-btn" target="_blank">⬇ Скачать</a>
@@ -894,27 +927,45 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 <p class="screenshot-caption">Нажимаем «Перезапустить Podkop»</p>
 </section>
 
+
+<!-- AVITO RKN -->
+<section class="section" id="avito-rkn">
+  <div class="section-header">
+    <span class="section-icon">📋</span>
+    <h2>Авито и Роскомнадзор</h2>
+  </div>
+
+  <p>Уважаемый покупатель, мои аккаунты могут блокироваться, так как моя деятельность не нравится «Роскомнадзору», а Авито по его поручению блокирует мне аккаунты.</p>
+
+  <img src="img/5248962077878066260.jpg" alt="Роскомнадзор" class="screenshot">
+
+  <p>Однако после блокировки я каждый раз создаю новый аккаунт. Как вы уже, наверно, догадались — меня зовут Алексей, поэтому и аккаунты я создаю с именем Алексей. Так, уже были созданы и заблокированы — <strong>Алексей, Алексей 2, Алексей 3, Алексей 4</strong>.</p>
+
+  <p>Новые мои аккаунты вы можете найти по соответствующим названиям роутеров в поиске и моему имени с порядковым номером — то есть <strong>Алексей 5</strong> или же <strong>Алексей Пятый</strong> и т.д. Модели роутеров я продаю одни и те же, так как они уже проверены временем и множеством клиентов. Поэтому найти мой новый аккаунт не составит труда.</p>
+
+  <div class="alert alert-info">
+    <span class="ai">🙏</span>
+    <span class="ab">Если вы читаете эту инструкцию — к вам будет огромная просьба: <strong>оставьте положительный отзыв на актуальном аккаунте Авито</strong>. Может быть, вы когда-то оставляли его на старом, заблокированном, но вот новый — он будет чистым, и новые клиенты могут не доверять из-за отсутствия отзывов.</span>
+  </div>
+
+  <p>Ниже — профили всех моих заблокированных аккаунтов, чтобы вы могли увидеть количество заказов, отзывы, название профиля и т.д.</p>
+
+  <h3>Алексей — самый первый аккаунт</h3>
+  <p>Как можете видеть — на Авито с 2019 года.</p>
+  <img src="img/A.jpg" alt="Аккаунт Алексей" class="screenshot">
+
+  <h3>Алексей 2</h3>
+  <p>Скриншота, к сожалению, нет — не успел сделать.</p>
+
+  <h3>Алексей 3</h3>
+  <img src="img/A3.jpg" alt="Аккаунт Алексей 3" class="screenshot">
+
+  <h3>Алексей 4</h3>
+  <img src="img/A4.jpg" alt="Аккаунт Алексей 4" class="screenshot">
+</section>
+
 <footer>
   <p>© 2026 Руководство пользователя · Спасибо за покупку!</p>
-  <div class="avito-accounts">
-    <p class="avito-title">Авито аккаунты:</p>
-    <div class="avito-cols">
-      <div class="avito-col">
-        <div class="avito-col-header blocked">🚫 Заблокированные Роскомнадзором</div>
-        <div class="avito-col-body">
-          <p>Алексей</p>
-          <p>Алексей 2</p>
-        </div>
-      </div>
-      <div class="avito-col">
-        <div class="avito-col-header live">✅ Живые</div>
-        <div class="avito-col-body">
-          <p>Алексей 3</p>
-          <p>Алексей 4</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </footer>
 </div>
 </div>
@@ -930,7 +981,7 @@ function copyCmd(){
     setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
   });
 }
-const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a'};
+const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a','avito-rkn':'#avito-rkn'};
 const links=document.querySelectorAll('.sidenav a');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
