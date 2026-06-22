@@ -157,6 +157,13 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   .backup-grid-top { grid-template-columns: 1fr 1fr; }
   .backup-grid-bottom { grid-template-columns: 1fr; }
 }
+
+.sub-h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 14px 0 8px;
+}
 </style>
 </head>
 <body>
@@ -251,7 +258,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <span class="model-4a-icon">📦</span>
     <div>
       <strong>У вас Xiaomi 4A GIGABIT?</strong>
-      <span>Для этой модели — отдельная инструкция по устранению неполадок</span>
+      <span>Для этой модели — отдельная инструкция по устранению неполадок и обновлению серверов</span>
     </div>
     <span class="model-4a-arrow">→</span>
   </a>
@@ -902,6 +909,50 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   <img src="img/57.png" alt="Поле ввода vless ссылки на 4A GIGABIT" class="screenshot">
 <p class="screenshot-caption">Поле для вставки ссылки подключения vless://...</p>
 
+  <h3>Обновление серверов</h3>
+
+  <p>Так как данный роутер самый слабый и минимальный для выборочной маршрутизации через VPN — он поддерживает только <strong>один работающий сервер одновременно</strong>. Раньше на данной модели стояли мои личные серверы, но и до них добрался Роскомнадзор. Поэтому для восстановления работоспособности ВПН на данной модели проделайте следующие действия.</p>
+
+  <h4 class="sub-h3">Обновление серверов через SSH</h4>
+
+  <div class="step-box">
+    <ol>
+      <li>Скачайте Putty: <a href="https://putty.org.ru/files/putty-0.73-ru-17/putty.exe" class="inline-link"><strong>putty.exe</strong></a> — либо по любой ссылке из интернета</li>
+      <li>Запустите, в поле <strong>«Имя хоста (или IP-адрес)»</strong> введите <code>192.168.5.1</code>, нажмите <strong>«Соединиться»</strong></li>
+    </ol>
+    <img src="img/23.png" alt="Окно Putty" class="screenshot">
+<p class="screenshot-caption">Вводим IP 192.168.5.1 и нажимаем Соединиться</p>
+    <ol start="3">
+      <li>Появится окно предупреждения безопасности — нажмите <strong>«Да»</strong></li>
+    </ol>
+    <img src="img/24.png" alt="Предупреждение безопасности" class="screenshot">
+<p class="screenshot-caption">Нажимаем Да</p>
+    <ol start="4">
+      <li>На запрос <code>login as:</code> введите <code>root</code> и нажмите Enter<br>
+      <em>Если ранее задавали пароль — введите его (символы при вводе не отображаются)</em></li>
+    </ol>
+    <img src="img/25.png" alt="Ввод логина root" class="screenshot">
+<p class="screenshot-caption">Вводим root и нажимаем Enter</p>
+    <ol start="5">
+      <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
+    </ol>
+    <img src="img/65.png" alt="Вставка команды в терминал" class="screenshot">
+<p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Команда обновления серверов</div>
+    <button class="copy-btn" onclick="copyCmd4a()">Копировать</button>
+    <pre id="cmd-text-4a">curl -sL "https://bit.ly/4giC4WD" | sh</pre>
+  </div>
+
+  <div class="alert alert-success">
+    <span class="ai">✅</span>
+    <span class="ab">При успешном обновлении сервера в консоли увидите соответствующее сообщение — <strong>«ОК: выбран Венгрия»</strong> («Страна сервера»)</span>
+  </div>
+  <img src="img/66.png" alt="Сервер обновлён — ОК выбран Венгрия" class="screenshot">
+<p class="screenshot-caption">Успешное обновление — сообщение «ОК: выбран Венгрия»</p>
+
   <h3>Подключение игровых консолей и майнинг-устройств</h3>
 
   <p>Для полной маршрутизации конкретного устройства через VPN имеется параметр <strong>«Принудительные прокси IP»</strong> — аналог параметра «Полностью маршрутизируемые IP-адреса» на других моделях:</p>
@@ -977,6 +1028,14 @@ function copyCmd(){
   const t=document.getElementById('cmd-text').textContent;
   navigator.clipboard.writeText(t).then(()=>{
     const b=document.querySelector('.copy-btn');
+    b.textContent='✓ Скопировано';b.style.background='#16a34a';b.style.color='#fff';
+    setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
+  });
+}
+function copyCmd4a(){
+  const t=document.getElementById('cmd-text-4a').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=event.target;
     b.textContent='✓ Скопировано';b.style.background='#16a34a';b.style.color='#fff';
     setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
   });
