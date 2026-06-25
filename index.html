@@ -164,6 +164,77 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   color: var(--text);
   margin: 14px 0 8px;
 }
+
+.model-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0;
+}
+.model-tab-btn {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .15s;
+}
+.model-tab-btn:hover { border-color: var(--primary); }
+.model-tab-btn.active { border-color: var(--primary); background: #eff6ff; }
+.model-tab-btn .mtb-title { font-weight: 700; font-size: 13.5px; margin-bottom: 6px; }
+.model-tab-btn .mtb-toggle {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+.model-tab-content { display: none; margin-top: 10px; }
+.model-tab-content.active { display: block; }
+
+.backup-version-group {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 16px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.backup-version-group .bname { font-weight: 700; font-size: 13.5px; }
+.backup-versions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+.backup-version-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+.backup-version-item .bver-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+
+.faq-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+}
+.faq-photo-col { text-align: center; }
+.faq-photo-col .fp-label { font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+@media(max-width:560px) {
+  .model-tabs { grid-template-columns: 1fr; }
+  .faq-photos { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -472,23 +543,55 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 
   <h3>Способ 1 — кнопка «Обновление серверов»</h3>
 
-  <div class="step-box">
-    <ol>
-      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
-      <li>Перейдите во вкладку <strong>Services → Podkop → Дашборд</strong> (подробнее — в разделе <a href="#server-switch" class="inline-link"><strong>«Смена серверов»</strong></a>). Нажмите кнопку <strong>«Обновить сервера»</strong></li>
-    </ol>
-    <img src="img/62.png" alt="Кнопка Обновить сервера" class="screenshot">
+  <div class="model-tabs">
+    <div class="model-tab-btn" data-tab="m1-other" onclick="switchTab('m1', 'm1-other')">
+      <div class="mtb-title">Все остальные модели</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+    <div class="model-tab-btn" data-tab="m1-4a" onclick="switchTab('m1', 'm1-4a')">
+      <div class="mtb-title">Xiaomi 4A Gigabit</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+  </div>
+
+  <div class="model-tab-content" id="m1-other">
+    <div class="step-box">
+      <ol>
+        <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+        <li>Перейдите во вкладку <strong>Services → Podkop → Дашборд</strong> (подробнее — в разделе <a href="#server-switch" class="inline-link"><strong>«Смена серверов»</strong></a>). Нажмите кнопку <strong>«Обновить сервера»</strong></li>
+      </ol>
+      <img src="img/62.png" alt="Кнопка Обновить сервера" class="screenshot">
 <p class="screenshot-caption">Нажимаем кнопку «Обновить сервера» во вкладке Дашборд</p>
-    <ol start="3">
-      <li>После успешного обновления серверов увидите соответствующую надпись и количество обновлённых серверов</li>
-    </ol>
-    <img src="img/63.png" alt="Успешное обновление через кнопку" class="screenshot">
+      <ol start="3">
+        <li>После успешного обновления серверов увидите соответствующую надпись и количество обновлённых серверов</li>
+      </ol>
+      <img src="img/63.png" alt="Успешное обновление через кнопку" class="screenshot">
 <p class="screenshot-caption">Успешное обновление — надпись с количеством обновлённых серверов</p>
-    <ol start="4">
-      <li>Если интернета на роутере нет — будет соответствующая ошибка и сервера не обновятся. Проверьте подключение к интернету и при необходимости восстановите его по разделу <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a></li>
-    </ol>
-    <img src="img/64.png" alt="Ошибка обновления — нет интернета" class="screenshot">
+      <ol start="4">
+        <li>Если интернета на роутере нет — будет соответствующая ошибка и сервера не обновятся. Проверьте подключение к интернету и при необходимости восстановите его по разделу <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a></li>
+      </ol>
+      <img src="img/64.png" alt="Ошибка обновления — нет интернета" class="screenshot">
 <p class="screenshot-caption">Ошибка обновления при отсутствии интернета на роутере</p>
+    </div>
+  </div>
+
+  <div class="model-tab-content" id="m1-4a">
+    <div class="step-box">
+      <ol>
+        <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+        <li>Перейдите во вкладку <strong>Services → Podkop → Диагностика</strong> (подробнее — в разделе <a href="#server-switch" class="inline-link"><strong>«Смена серверов»</strong></a>). Нажмите кнопку <strong>«Сменить сервер»</strong></li>
+      </ol>
+      <img src="img/67.png" alt="Кнопка Сменить сервер" class="screenshot">
+<p class="screenshot-caption">Нажимаем кнопку «Сменить сервер»</p>
+      <ol start="3">
+        <li>После успешной смены сервера вы увидите соответствующую надпись, страну сервера и его пинг (задержку)</li>
+      </ol>
+      <img src="img/68.png" alt="Успешная смена сервера 4A" class="screenshot">
+<p class="screenshot-caption">Успешная смена сервера — страна и задержка</p>
+      <ol start="4">
+        <li>Если интернета на роутере нет — будет соответствующая ошибка и сервера не обновятся. Проверьте подключение к интернету и при необходимости восстановите его по разделу <a href="#troubleshooting" class="inline-link"><strong>«Что делать, если роутер не работает?»</strong></a></li>
+      </ol>
+    </div>
   </div>
 
   <h3>Способ 2 — скрипт через SSH</h3>
@@ -511,25 +614,62 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     </ol>
     <img src="img/25.png" alt="Ввод логина root" class="screenshot">
 <p class="screenshot-caption">Вводим root и нажимаем Enter</p>
-    <ol start="5">
-      <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
-    </ol>
-    <img src="img/26.png" alt="Вставка команды в терминал" class="screenshot">
+  </div>
+
+  <p>Далее скрипт обновления серверов отличается в зависимости от модели роутера.</p>
+
+  <div class="model-tabs">
+    <div class="model-tab-btn" data-tab="m2-other" onclick="switchTab('m2', 'm2-other')">
+      <div class="mtb-title">Все остальные модели</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+    <div class="model-tab-btn" data-tab="m2-4a" onclick="switchTab('m2', 'm2-4a')">
+      <div class="mtb-title">Xiaomi 4A Gigabit</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+  </div>
+
+  <div class="model-tab-content" id="m2-other">
+    <div class="step-box">
+      <ol start="5">
+        <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
+      </ol>
+      <img src="img/26.png" alt="Вставка команды в терминал" class="screenshot">
 <p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
-  </div>
-
-  <div class="code-block">
-    <div class="code-label">Команда обновления серверов</div>
-    <button class="copy-btn" onclick="copyCmd()">Копировать</button>
-    <pre id="cmd-text">wget -qO- https://bit.ly/4290OrT | sh -s restart</pre>
-  </div>
-
-  <div class="alert alert-success">
-    <span class="ai">✅</span>
-    <span class="ab">При успешном обновлении серверов в консоли увидите соответствующее сообщение — <strong>«Сервера обновлены»</strong></span>
-  </div>
-  <img src="img/27.png" alt="Сервера обновлены" class="screenshot">
+    </div>
+    <div class="code-block">
+      <div class="code-label">Команда обновления серверов</div>
+      <button class="copy-btn" onclick="copyCmd('cmd-text')">Копировать</button>
+      <pre id="cmd-text">wget -qO- https://bit.ly/4290OrT | sh -s restart</pre>
+    </div>
+    <div class="alert alert-success">
+      <span class="ai">✅</span>
+      <span class="ab">При успешном обновлении серверов в консоли увидите соответствующее сообщение — <strong>«Сервера обновлены»</strong></span>
+    </div>
+    <img src="img/27.png" alt="Сервера обновлены" class="screenshot">
 <p class="screenshot-caption">Успешное обновление — сообщение «Сервера обновлены»</p>
+  </div>
+
+  <div class="model-tab-content" id="m2-4a">
+    <div class="step-box">
+      <ol start="5">
+        <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
+      </ol>
+      <img src="img/65.png" alt="Вставка команды в терминал 4A" class="screenshot">
+<p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
+    </div>
+    <div class="code-block">
+      <div class="code-label">Команда обновления серверов</div>
+      <button class="copy-btn" onclick="copyCmd('cmd-text-4a-up')">Копировать</button>
+      <pre id="cmd-text-4a-up">curl -sL "https://bit.ly/4giC4WD" | sh</pre>
+    </div>
+    <div class="alert alert-success">
+      <span class="ai">✅</span>
+      <span class="ab">При успешном обновлении сервера в консоли увидите соответствующее сообщение — <strong>«ОК: выбран Венгрия»</strong> («Страна сервера»)</span>
+    </div>
+    <img src="img/66.png" alt="Сервер обновлён — ОК выбран Венгрия" class="screenshot">
+<p class="screenshot-caption">Успешное обновление — сообщение «ОК: выбран Венгрия»</p>
+  </div>
 </section>
 
 <!-- RESET -->
@@ -541,7 +681,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   <p>Если вы проводили эксперименты с роутером или изменяли настройки, после чего он перестал работать — перед загрузкой бекапа необходимо сделать полный сброс до заводских настроек.</p>
   <div class="alert alert-danger">
     <span class="ai">🚨</span>
-    <span class="ab"><strong>Внимание!</strong> После сброса все ваши личные настройки будут удалены: название Wi-Fi сетей, пароль, PPPoE и другие изменения. На роутере сохранится прошивка и всё необходимое программное обеспечение, НО серверов VPN не будет — их необходимо будет добавить: самостоятельно (при наличии), через <a href="#updates" class="inline-link"><strong>скрипт SSH</strong></a> или через загрузку <a href="#backups" class="inline-link"><strong>бекапа</strong></a></span>
+    <span class="ab"><strong>Внимание!</strong> После сброса все ваши личные настройки будут удалены: название Wi-Fi сетей, пароль, PPPoE и другие изменения. На роутере сохранится прошивка и всё необходимое программное обеспечение, НО серверов VPN не будет — их необходимо будет добавить: самостоятельно (при наличии), через кнопку, через <a href="#updates" class="inline-link"><strong>скрипт SSH</strong></a> или через загрузку <a href="#backups" class="inline-link"><strong>бекапа</strong></a></span>
   </div>
   <div class="alert alert-info">
     <span class="ai">ℹ️</span>
@@ -622,6 +762,37 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <div class="backup-card">
       <div class="bname">SmartBox GIGA</div>
       <a href="https://drive.google.com/uc?export=download&id=19VwbDcgcOFX7AFQnKADN1wEI5DTtUsg_" class="dl-btn" target="_blank">⬇ Скачать</a>
+    </div>
+  </div>
+
+  <div class="backup-grid-top" style="margin-top:10px;">
+    <div class="backup-version-group" style="grid-column: span 2;">
+      <div class="bname">Xiaomi 4A Gigabit</div>
+      <div class="backup-versions">
+        <div class="backup-version-item">
+          <span class="bver-label">Version 1</span>
+          <a href="ССЫЛКА_4A_V1" class="dl-btn" target="_blank">⬇ Скачать</a>
+        </div>
+        <div class="backup-version-item">
+          <span class="bver-label">Version 2</span>
+          <a href="ССЫЛКА_4A_V2" class="dl-btn" target="_blank">⬇ Скачать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-box" style="margin-top:16px;">
+    <p style="font-weight:700; margin-bottom:8px;">❓ FAQ: Как отличить Xiaomi 4A Gigabit Version 1 от Version 2?</p>
+    <p><strong>Version 2</strong> имеет на задней стороне роутера крепление на стену, а <strong>Version 1</strong> — не имеет.</p>
+    <div class="faq-photos">
+      <div class="faq-photo-col">
+        <div class="fp-label">Version 1</div>
+        <img src="img/V1.jpg" alt="Xiaomi 4A Gigabit Version 1" class="screenshot">
+      </div>
+      <div class="faq-photo-col">
+        <div class="fp-label">Version 2</div>
+        <img src="img/V2.jpg" alt="Xiaomi 4A Gigabit Version 2" class="screenshot">
+      </div>
     </div>
   </div>
 
@@ -713,21 +884,50 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <h2>Смена серверов</h2>
   </div>
 
-  <p>Как уже было сказано, на роутере прописано более 130 автообновляемых серверов VPN и стоит режим работы, осуществляющий автоматическое определение и подключение к серверу с наименьшей задержкой (ping). Однако иногда бывает так, что сервер с наименьшей задержкой оказывается и самым загруженным, ввиду чего видеосервисы могут загружаться дольше чем обычно. Либо бывают ситуации, когда определённому игровому, музыкальному или иному сервису требуется сервер определённой страны. В таком случае вы можете принудительно выбрать нужный вам сервер.</p>
+  <p>Как уже было сказано, на роутере прописано более 100 автообновляемых серверов VPN. Однако бывает так, что выбранный сервер оказывается загруженным, ввиду чего видеосервисы могут загружаться дольше чем обычно. Либо бывают ситуации, когда определённому игровому, музыкальному или иному сервису требуется сервер определённой страны. В таком случае вы можете принудительно выбрать нужный вам сервер на всех моделях, кроме Xiaomi 4A Gigabit. На нём вы можете только поменять сервер на случайный.</p>
 
-  <p>Для этого зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> и перейдите во вкладку <strong>Services → Podkop → Дашборд</strong>:</p>
+  <div class="model-tabs">
+    <div class="model-tab-btn" data-tab="ss-other" onclick="switchTab('ss', 'ss-other')">
+      <div class="mtb-title">Все остальные модели</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+    <div class="model-tab-btn" data-tab="ss-4a" onclick="switchTab('ss', 'ss-4a')">
+      <div class="mtb-title">Xiaomi 4A Gigabit</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+  </div>
 
-  <img src="img/1.png" alt="Services → Podkop" class="screenshot">
+  <div class="model-tab-content" id="ss-other">
+    <p>Для этого зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> и перейдите во вкладку <strong>Services → Podkop → Дашборд</strong>:</p>
+
+    <img src="img/1.png" alt="Services → Podkop" class="screenshot">
 <p class="screenshot-caption">Открываем Services → Podkop</p>
-  <img src="img/41.png" alt="Дашборд с серверами" class="screenshot">
+    <img src="img/41.png" alt="Дашборд с серверами" class="screenshot">
 <p class="screenshot-caption">Вкладка Дашборд — список доступных серверов</p>
 
-  <p>Мы можем видеть, что сейчас выбран сервер — <strong>Самый быстрый</strong>, а ниже отображаются блоки с доступными серверами. При необходимости можете произвести тестирование задержки путём нажатия соответствующей кнопки — <strong>«Тестирование задержки»</strong>.</p>
+    <p>Мы можем видеть, что сейчас выбран сервер — <strong>Самый быстрый</strong>, а ниже отображаются блоки с доступными серверами. При необходимости можете произвести тестирование задержки путём нажатия соответствующей кнопки — <strong>«Тестирование задержки»</strong>.</p>
 
-  <p>Для выбора конкретного сервера достаточно просто нажать на соответствующий блок — вокруг него появится синяя обводка, а с блока «Самый быстрый» синяя обводка пропадёт. Это значит, что вы успешно выбрали необходимый вам сервер.</p>
+    <p>Для выбора конкретного сервера достаточно просто нажать на соответствующий блок — вокруг него появится синяя обводка, а с блока «Самый быстрый» синяя обводка пропадёт. Это значит, что вы успешно выбрали необходимый вам сервер.</p>
 
-  <img src="img/42.png" alt="Выбранный сервер с синей обводкой" class="screenshot">
+    <img src="img/42.png" alt="Выбранный сервер с синей обводкой" class="screenshot">
 <p class="screenshot-caption">Выбранный сервер отмечен синей обводкой</p>
+  </div>
+
+  <div class="model-tab-content" id="ss-4a">
+    <div class="step-box">
+      <ol>
+        <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+        <li>Перейдите во вкладку <strong>Services → Podkop → Диагностика</strong>. Нажмите кнопку <strong>«Сменить сервер»</strong></li>
+      </ol>
+      <img src="img/67.png" alt="Кнопка Сменить сервер" class="screenshot">
+<p class="screenshot-caption">Нажимаем кнопку «Сменить сервер»</p>
+      <ol start="3">
+        <li>После успешной смены сервера вы увидите соответствующую надпись, страну сервера и его пинг (задержку)</li>
+      </ol>
+      <img src="img/68.png" alt="Успешная смена сервера 4A" class="screenshot">
+<p class="screenshot-caption">Успешная смена сервера — страна и задержка</p>
+    </div>
+  </div>
 </section>
 
 <!-- MAIN ROUTER SETUP -->
@@ -913,45 +1113,10 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 
   <p>Так как данный роутер самый слабый и минимальный для выборочной маршрутизации через VPN — он поддерживает только <strong>один работающий сервер одновременно</strong>. Раньше на данной модели стояли мои личные серверы, но и до них добрался Роскомнадзор. Поэтому для восстановления работоспособности ВПН на данной модели проделайте следующие действия.</p>
 
-  <h4 class="sub-h3">Обновление серверов через SSH</h4>
-
-  <div class="step-box">
-    <ol>
-      <li>Скачайте Putty: <a href="https://putty.org.ru/files/putty-0.73-ru-17/putty.exe" class="inline-link"><strong>putty.exe</strong></a> — либо по любой ссылке из интернета</li>
-      <li>Запустите, в поле <strong>«Имя хоста (или IP-адрес)»</strong> введите <code>192.168.5.1</code>, нажмите <strong>«Соединиться»</strong></li>
-    </ol>
-    <img src="img/23.png" alt="Окно Putty" class="screenshot">
-<p class="screenshot-caption">Вводим IP 192.168.5.1 и нажимаем Соединиться</p>
-    <ol start="3">
-      <li>Появится окно предупреждения безопасности — нажмите <strong>«Да»</strong></li>
-    </ol>
-    <img src="img/24.png" alt="Предупреждение безопасности" class="screenshot">
-<p class="screenshot-caption">Нажимаем Да</p>
-    <ol start="4">
-      <li>На запрос <code>login as:</code> введите <code>root</code> и нажмите Enter<br>
-      <em>Если ранее задавали пароль — введите его (символы при вводе не отображаются)</em></li>
-    </ol>
-    <img src="img/25.png" alt="Ввод логина root" class="screenshot">
-<p class="screenshot-caption">Вводим root и нажимаем Enter</p>
-    <ol start="5">
-      <li>Скопируйте команду ниже, вставьте в терминал <strong>правой кнопкой мыши</strong> и нажмите Enter:</li>
-    </ol>
-    <img src="img/65.png" alt="Вставка команды в терминал" class="screenshot">
-<p class="screenshot-caption">Вставляем команду правой кнопкой мыши и нажимаем Enter</p>
+  <div class="alert alert-info">
+    <span class="ai">🔄</span>
+    <span class="ab">Подробная инструкция по обновлению серверов на Xiaomi 4A Gigabit — в разделе <a href="#updates" class="inline-link"><strong>«Обновление серверов»</strong></a> (выберите вкладку «Xiaomi 4A Gigabit»).</span>
   </div>
-
-  <div class="code-block">
-    <div class="code-label">Команда обновления серверов</div>
-    <button class="copy-btn" onclick="copyCmd4a()">Копировать</button>
-    <pre id="cmd-text-4a">curl -sL "https://bit.ly/4giC4WD" | sh</pre>
-  </div>
-
-  <div class="alert alert-success">
-    <span class="ai">✅</span>
-    <span class="ab">При успешном обновлении сервера в консоли увидите соответствующее сообщение — <strong>«ОК: выбран Венгрия»</strong> («Страна сервера»)</span>
-  </div>
-  <img src="img/66.png" alt="Сервер обновлён — ОК выбран Венгрия" class="screenshot">
-<p class="screenshot-caption">Успешное обновление — сообщение «ОК: выбран Венгрия»</p>
 
   <h3>Подключение игровых консолей и майнинг-устройств</h3>
 
@@ -1025,21 +1190,37 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 <script>
 function toggleNav(){document.getElementById('mobMenu').classList.toggle('open');}
 function closeNav(){document.getElementById('mobMenu').classList.remove('open');}
-function copyCmd(){
-  const t=document.getElementById('cmd-text').textContent;
-  navigator.clipboard.writeText(t).then(()=>{
-    const b=document.querySelector('.copy-btn');
-    b.textContent='✓ Скопировано';b.style.background='#16a34a';b.style.color='#fff';
-    setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
-  });
-}
-function copyCmd4a(){
-  const t=document.getElementById('cmd-text-4a').textContent;
+function copyCmd(id){
+  const t=document.getElementById(id).textContent;
   navigator.clipboard.writeText(t).then(()=>{
     const b=event.target;
+    const orig=b.textContent;
     b.textContent='✓ Скопировано';b.style.background='#16a34a';b.style.color='#fff';
-    setTimeout(()=>{b.textContent='Копировать';b.style.background='';b.style.color='';},2000);
+    setTimeout(()=>{b.textContent=orig;b.style.background='';b.style.color='';},2000);
   });
+}
+function switchTab(group, targetId){
+  const btn = document.querySelector(`.model-tab-btn[data-tab="${targetId}"]`);
+  const content = document.getElementById(targetId);
+  const isOpen = content.classList.contains('active');
+
+  // Close all tabs in this group and reset their labels
+  document.querySelectorAll(`.model-tab-btn[onclick*="'${group}'"]`).forEach(b=>{
+    b.classList.remove('active');
+    const t = b.querySelector('.mtb-toggle');
+    if (t) t.textContent = 'Развернуть';
+  });
+  document.querySelectorAll(`.model-tab-content`).forEach(c=>{
+    if (c.id.startsWith(group+'-')) c.classList.remove('active');
+  });
+
+  // If it wasn't open, open it now (toggle behaviour)
+  if (!isOpen) {
+    btn.classList.add('active');
+    content.classList.add('active');
+    const t = btn.querySelector('.mtb-toggle');
+    if (t) t.textContent = 'Свернуть';
+  }
 }
 const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a','avito-rkn':'#avito-rkn'};
 const links=document.querySelectorAll('.sidenav a');
