@@ -235,6 +235,66 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   .model-tabs { grid-template-columns: 1fr; }
   .faq-photos { grid-template-columns: 1fr; }
 }
+
+.telegram-bot-block{
+  background:linear-gradient(135deg,#1689f5 0%,#0068d9 100%);
+  border-radius:18px;
+  padding:28px 32px;
+  margin-bottom:28px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 28px -6px rgba(0,104,217,.35);
+}
+.telegram-bot-block::after{
+  content:"✈️";
+  position:absolute;
+  right:35px;
+  bottom:18px;
+  font-size:110px;
+  opacity:.12;
+}
+.telegram-bot-title{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:30px;
+  padding:6px 18px;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+.telegram-bot-block p{
+  max-width:620px;
+  font-size:15px;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+.telegram-bot-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:#fff;
+  color:#1677e8;
+  text-decoration:none;
+  font-weight:700;
+  padding:12px 22px;
+  border-radius:12px;
+  transition:.15s;
+}
+.telegram-bot-link:hover{
+  transform:translateY(-2px);
+}
+.telegram-url{
+  display:block;
+  margin-top:14px;
+  color:#fff;
+  text-decoration:underline;
+  font-weight:600;
+}
+
 </style>
 </head>
 <body>
@@ -293,7 +353,7 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 <header class="hero">
   <div class="hero-badge">OpenWrt · Podkop · Выборочная маршрутизация</div>
   <h1>Руководство пользователя роутера</h1>
-  <p><strong>Ваш роутер уже полностью настроен</strong> и готов к работе. Предустановлена подписка с доступом к более чем 130 серверам, установлено автообновление. Просто подключитесь к Wi-Fi и пользуйтесь.</p>
+  <p><strong>Ваш роутер уже полностью настроен</strong> и готов к работе. Предустановлена подписка с доступом к более чем 100 серверам, установлено автообновление. Просто подключитесь к Wi-Fi и пользуйтесь.</p>
 </header>
 
 <div class="wifi-block" id="wifi">
@@ -311,6 +371,22 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
       <div class="wifi-vals"><span class="wifi-val pw">avito1234</span></div>
     </div>
   </div>
+
+</div>
+
+<div class="telegram-bot-block">
+  <div class="telegram-bot-title">🤖 Чат-Бот в Telegram</div>
+  <p>
+    Если не хотите читать полностью инструкцию и хотите получить ответ сразу же
+    конкретно по вашему вопросу, либо возникли вопросы в процессе настройки,
+    можете обратиться за помощью в чат-бот.
+  </p>
+  <a class="telegram-bot-link" href="https://t.me/Aleksey_Avito_Bot" target="_blank">
+    ✈️ Открыть чат-бот в Telegram →
+  </a>
+  <a class="telegram-url" href="https://t.me/Aleksey_Avito_Bot" target="_blank">
+    https://t.me/Aleksey_Avito_Bot
+  </a>
 </div>
 
 <!-- TROUBLESHOOTING -->
