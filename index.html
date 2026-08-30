@@ -7,294 +7,194 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#2563eb;--primary-dark:#1e40af;--bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--red:#dc2626;--amber:#d97706;--green:#16a34a;--nav-w:230px;}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;}
-.sidenav{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#fff;border-right:1px solid var(--border);overflow-y:auto;z-index:100;padding:0 0 24px;display:flex;flex-direction:column;}
-.sidenav-header{padding:18px 18px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:1;}
-.sidenav-header span{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.sidenav nav{padding:8px 0;}
-.sidenav a{display:flex;align-items:flex-start;gap:9px;padding:8px 18px;font-size:12.5px;font-weight:500;color:var(--muted);text-decoration:none;border-left:3px solid transparent;transition:all .15s;line-height:1.35;}
-.sidenav a:hover,.sidenav a.active{color:var(--primary);background:#eff6ff;border-left-color:var(--primary);}
-.sidenav a .ni{font-size:14px;flex-shrink:0;margin-top:1px;}
-.nav-divider{height:1px;background:var(--border);margin:6px 18px;}
-.mobile-bar{display:none;position:sticky;top:0;z-index:99;background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;}
-.mob-toggle{background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;}
-.mob-menu{display:none;flex-direction:column;gap:3px;margin-top:10px;}
-.mob-menu.open{display:flex;}
-.mob-menu a{padding:9px 12px;background:var(--bg);border-radius:8px;text-decoration:none;color:var(--text);font-size:13px;font-weight:500;}
-.main{margin-left:var(--nav-w);min-height:100vh;}
-.content{max-width:780px;margin:0 auto;padding:36px 32px 80px;}
-.hero{background:linear-gradient(135deg,#1e40af 0%,#2563eb 100%);color:white;padding:36px 40px;border-radius:20px;margin-bottom:28px;box-shadow:0 8px 28px -4px rgba(37,99,235,.35);}
-.hero-badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:100px;padding:3px 12px;font-size:11px;font-weight:600;margin-bottom:12px;letter-spacing:.05em;}
-.hero h1{font-size:clamp(19px,4vw,26px);font-weight:700;margin-bottom:8px;line-height:1.3;}
-.hero p{opacity:.88;font-size:14px;}
-.wifi-block{background:linear-gradient(135deg,#022c22 0%,#064e3b 100%);border-radius:18px;padding:26px 30px;margin-bottom:28px;position:relative;overflow:hidden;}
-.wifi-block::after{content:"📶";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:58px;opacity:.1;pointer-events:none;}
-.wifi-title{color:#6ee7b7;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
-.wifi-rows{display:flex;flex-direction:column;gap:12px;}
-.wifi-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.wifi-label{color:#a7f3d0;font-size:12px;font-weight:600;min-width:70px;flex-shrink:0;}
-.wifi-vals{display:flex;flex-wrap:wrap;gap:8px;}
-.wifi-val{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:600;padding:5px 13px;border-radius:7px;}
-.wifi-val.pw{background:rgba(110,231,183,.18);border-color:rgba(110,231,183,.35);color:#6ee7b7;font-size:20px;padding:8px 20px;letter-spacing:.04em;}
-.section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;margin-bottom:22px;scroll-margin-top:20px;}
-.section.yellow-bg{background:#fffbeb;border-color:#fde68a;}
-.section-header{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);}
-.section-icon{font-size:22px;}
-h2{font-size:19px;font-weight:700;color:var(--primary);line-height:1.2;}
-h2.red{color:var(--red);}
-h3{font-size:14.5px;font-weight:700;margin:22px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-.step-box{border:1px solid var(--border);border-radius:11px;padding:18px 22px;margin:12px 0;background:#fafafa;}
-.step-box ol,.step-box ul{padding-left:20px;}
-.step-box li{margin-bottom:7px;}
-.step-box h3{margin-top:0;}
-.alert{padding:14px 16px;border-radius:10px;margin:14px 0;border-left:4px solid transparent;font-size:13.5px;display:flex;gap:10px;}
-.alert .ai{font-size:17px;flex-shrink:0;margin-top:1px;}
-.alert .ab{display:inline;line-height:1.6;}
-.alert .ab *{display:inline;}
-.alert .ab strong{display:inline;font-weight:700;}
-.alert .ab br{display:block;content:'';margin-top:4px;}
-.alert-warn{background:#fef3c7;border-left-color:#92400e;color:#78350f;}
-.alert-warn-on-yellow{background:#f59e0b;border-left-color:#78350f;color:#1c1917;}
-.alert-danger{background:#fef2f2;border-left-color:var(--red);color:#7f1d1d;}
-.alert-info{background:#eff6ff;border-left-color:var(--primary);color:#1e3a5f;}
-.alert-success{background:#f0fdf4;border-left-color:var(--green);color:#14532d;}
-.inline-link{color:var(--primary);text-decoration:underline;text-underline-offset:2px;font-weight:700;display:inline!important;}
-.inline-link:hover{color:var(--primary-dark);}
-code{background:#f1f5f9;border:1px solid var(--border);padding:2px 7px;border-radius:5px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:#be123c;font-weight:600;}
-.code-block{background:#0f172a;border-radius:10px;padding:14px 18px;margin:12px 0;position:relative;overflow-x:auto;}
-.code-block pre{font-family:"JetBrains Mono",monospace;font-size:12px;color:#86efac;white-space:pre-wrap;word-break:break-all;line-height:1.6;}
-.code-label{font-size:9.5px;color:#64748b;font-family:"JetBrains Mono",monospace;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px;}
-.copy-btn{position:absolute;top:10px;right:10px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer;font-family:"Inter",sans-serif;transition:all .15s;}
-.copy-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
-.screenshot{width:100%;border-radius:9px;border:1px solid var(--border);margin:12px 0 3px;display:block;}
-.screenshot-caption{text-align:center;font-size:11.5px;color:var(--muted);margin-bottom:12px;font-style:italic;}
-.img-placeholder{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:10px;padding:18px;text-align:center;margin:12px 0;color:#94a3b8;font-size:13px;}
-.backup-grid-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px;}
-.backup-grid-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0 0 14px;}
-@media(max-width:580px){.backup-grid-top{grid-template-columns:1fr 1fr;}.backup-grid-bottom{grid-template-columns:1fr 1fr;}}
-.backup-card{border:1px solid var(--border);border-radius:11px;padding:16px;display:flex;flex-direction:column;gap:9px;background:#fafafa;align-items:center;text-align:center;}
-.backup-card .bname{font-weight:700;font-size:13.5px;}
-.dl-btn{display:inline-flex;align-items:center;gap:5px;background:#16a34a;color:#fff;font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:7px;text-decoration:none;transition:opacity .15s;align-self:center;}
-.dl-btn:hover{opacity:.85;}
-p{margin-bottom:10px;}
-footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px;}
-@media(max-width:768px){.sidenav{display:none;}.mobile-bar{display:block;}.main{margin-left:0;}.content{padding:16px 14px 60px;}.hero{padding:24px 20px;}.wifi-block{padding:20px 18px;}.section{padding:20px 16px;}.wifi-val.pw{font-size:16px;}}
+:root{
+  --page-bg:#eef2f7;--card:#ffffff;--border:#e6ebf2;
+  --text:#3a4657;--text-strong:#1e293b;--muted:#94a3b8;
+  --blue:#2563eb;--blue-strong:#1d4ed8;--blue-deep:#1e40af;
+  --blue-soft:#e8f0fe;--blue-soft-2:#eef4ff;
+  --red:#dc2626;--amber:#d97706;--green:#16a34a;
+  --sidebar-label:#9aa5b5;--nav-text:#4b5563;
+  --nav-w:264px;--radius:16px;
+  --shadow-card:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--page-bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+svg{display:block}
 
+/* ---------- Sidebar ---------- */
+.sidenav{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#fff;border-right:1px solid var(--border);overflow-y:auto;z-index:100;padding:20px 14px 22px;display:flex;flex-direction:column}
+.sidenav-header{padding:2px 12px 12px}
+.sidenav-header span{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--sidebar-label)}
+.sidenav nav{display:flex;flex-direction:column;gap:2px}
+.sidenav a{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:10px;font-size:13px;font-weight:500;color:var(--nav-text);text-decoration:none;line-height:1.35;transition:background .15s,color .15s}
+.sidenav a:hover{background:#f4f7fb}
+.sidenav a.active{background:var(--blue-soft);color:var(--blue-strong);font-weight:600}
+.sidenav a .ni{font-size:15px;flex-shrink:0;line-height:1.3}
+.nav-divider{height:1px;background:var(--border);margin:8px 12px}
+.side-help{margin-top:auto;background:#e9f1fe;border-radius:14px;padding:15px 15px 16px;position:relative;margin-top:20px}
+.side-help h4{font-size:14px;font-weight:700;color:var(--blue-strong);margin-bottom:5px}
+.side-help p{font-size:12.5px;color:#5a6b82;line-height:1.45;max-width:150px;margin:0}
+.side-help .tgico{position:absolute;right:14px;bottom:15px}
 
-.model-4a-banner {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #eff6ff;
-  border: 2px solid #2563eb;
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin: 14px 0;
-  text-decoration: none;
-  color: var(--text);
-  transition: all 0.15s;
-}
-.model-4a-banner:hover {
-  background: #dbeafe;
-  transform: translateY(-1px);
-}
-.model-4a-icon {
-  font-size: 28px;
-  flex-shrink: 0;
-}
-.model-4a-banner div {
-  flex: 1;
-}
-.model-4a-banner strong {
-  display: block;
-  font-size: 15px;
-  color: #1e40af;
-  margin-bottom: 2px;
-}
-.model-4a-banner span {
-  font-size: 13px;
-  color: var(--muted);
-}
-.model-4a-arrow {
-  font-size: 20px;
-  color: #2563eb;
-  font-weight: 700;
-  flex-shrink: 0;
-}
+/* ---------- Mobile bar ---------- */
+.mobile-bar{display:none;position:sticky;top:0;z-index:99;background:#fff;border-bottom:1px solid var(--border);padding:10px 14px}
+.mob-toggle{background:var(--blue);color:#fff;border:none;padding:11px 16px;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;width:100%}
+.mob-menu{display:none;flex-direction:column;gap:4px;margin-top:10px}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:10px 14px;background:var(--page-bg);border-radius:10px;text-decoration:none;color:var(--text-strong);font-size:13.5px;font-weight:500}
 
-.methods-list {
-  background: #f8fafc;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 20px;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.method-item {
-  font-size: 14px;
-  padding-left: 8px;
-  color: var(--text);
-}
+/* ---------- Layout ---------- */
+.main{margin-left:var(--nav-w);min-height:100vh}
+.content{max-width:860px;margin:0 auto;padding:34px 36px 80px}
 
-.backup-grid-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 14px 0 10px;
-}
-.backup-grid-bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin: 0 0 14px;
-}
-@media(max-width:600px) {
-  .backup-grid-top { grid-template-columns: 1fr 1fr; }
-  .backup-grid-bottom { grid-template-columns: 1fr; }
-}
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:40px 44px;margin-bottom:24px;color:#fff;display:flex;align-items:center;gap:22px;background:radial-gradient(120% 150% at 86% 12%,rgba(255,255,255,.22),rgba(255,255,255,0) 46%),linear-gradient(125deg,#1b46c4 0%,#2258db 52%,#3b7ef0 100%);box-shadow:0 16px 40px rgba(29,78,216,.22)}
+.hero-copy{position:relative;z-index:2;flex:1 1 auto;max-width:560px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:100px;padding:6px 15px;font-size:12px;font-weight:600;letter-spacing:.02em;margin-bottom:16px}
+.hero h1{font-size:clamp(24px,4vw,36px);font-weight:800;line-height:1.1;letter-spacing:-.01em;margin-bottom:12px}
+.hero p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.9)}
+.hero p strong{color:#fff;font-weight:700}
+.hero-art{position:relative;z-index:2;flex:0 0 auto;width:230px;max-width:34%}
 
-.sub-h3 {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin: 14px 0 8px;
-}
+/* ---------- Wi-Fi block ---------- */
+.wifi-block{position:relative;overflow:hidden;border-radius:20px;padding:26px 30px;margin-bottom:24px;color:#eafff5;background:radial-gradient(120% 130% at 10% 8%,rgba(52,211,153,.20),rgba(52,211,153,0) 46%),linear-gradient(125deg,#0f4a37 0%,#0b3628 72%);box-shadow:0 14px 34px rgba(6,54,40,.30)}
+.wifi-block::after{content:none}
+.wifi-deco{position:absolute;right:26px;top:50%;transform:translateY(-50%);z-index:1;opacity:.9;pointer-events:none}
+.wifi-title{position:relative;z-index:2;display:flex;align-items:center;gap:10px;color:#eafff6;font-size:21px;font-weight:700;letter-spacing:0;text-transform:none;margin-bottom:18px}
+.wifi-rows{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2;max-width:560px}
+.wifi-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.wifi-label{color:#9fc9b6;font-size:14px;font-weight:600;min-width:70px;flex-shrink:0}
+.wifi-vals{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.wifi-val{background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.10);color:#d9fdec;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;padding:10px 16px;border-radius:8px}
+.pw-wrap{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.30);border:1px solid rgba(110,231,183,.30);border-radius:8px;padding:2px 8px 2px 2px}
+.wifi-val.pw{background:transparent;border:none;color:#6ee7b7;font-size:16px;letter-spacing:.14em;padding:9px 4px 9px 14px}
+.pw-toggle{background:none;border:none;cursor:pointer;color:#7fd9b6;display:flex;padding:5px;transition:color .15s}
+.pw-toggle:hover{color:#bff3dc}
+.wifi-note{position:relative;z-index:2;display:flex;align-items:center;gap:9px;margin-top:18px;font-size:13px;color:#9fc9b6}
+.wifi-note svg{color:#7fd9b6;flex-shrink:0}
 
-.model-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 14px 0;
-}
-.model-tab-btn {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  padding: 14px;
-  text-align: center;
-  cursor: pointer;
-  transition: all .15s;
-}
-.model-tab-btn:hover { border-color: var(--primary); }
-.model-tab-btn.active { border-color: var(--primary); background: #eff6ff; }
-.model-tab-btn .mtb-title { font-weight: 700; font-size: 13.5px; margin-bottom: 6px; }
-.model-tab-btn .mtb-toggle {
-  display: inline-block;
-  background: var(--primary);
-  color: #fff;
-  font-size: 11.5px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 6px;
-}
-.model-tab-content { display: none; margin-top: 10px; }
-.model-tab-content.active { display: block; }
+/* ---------- Telegram block ---------- */
+.telegram-bot-block{position:relative;overflow:hidden;border-radius:22px;padding:30px 32px;margin-bottom:24px;color:#fff;display:flex;align-items:center;gap:28px;background:radial-gradient(120% 150% at 90% 10%,rgba(255,255,255,.20),rgba(255,255,255,0) 46%),linear-gradient(125deg,#2f97ee 0%,#1f74d8 100%);box-shadow:0 14px 34px rgba(31,116,216,.28)}
+.telegram-bot-block::after{content:none}
+.tg-logo{flex:0 0 auto;width:140px;max-width:24%;position:relative;z-index:2}
+.tg-body{position:relative;z-index:2;flex:1 1 auto}
+.telegram-bot-title{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#1f74d8;border:none;border-radius:999px;padding:9px 18px;font-size:15px;font-weight:700;margin-bottom:16px;box-shadow:0 6px 16px rgba(11,60,110,.18)}
+.telegram-bot-block p{max-width:560px;font-size:15px;line-height:1.6;margin-bottom:18px;color:#eaf4ff}
+.telegram-bot-link{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#1f74d8;text-decoration:none;font-weight:700;font-size:16px;padding:14px 24px;border-radius:12px;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 20px rgba(11,60,110,.20)}
+.telegram-bot-link:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,60,110,.26)}
+.telegram-bot-link .chev{font-weight:700}
+.telegram-url{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:#fff;text-decoration:underline;text-underline-offset:2px;font-weight:600;font-size:14.5px}
 
-.backup-version-group {
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  padding: 16px;
-  background: #fafafa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-.backup-version-group .bname { font-weight: 700; font-size: 13.5px; }
-.backup-versions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  width: 100%;
-}
-.backup-version-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
-  padding: 10px;
-}
-.backup-version-item .bver-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+/* ---------- Section ---------- */
+.section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:22px;scroll-margin-top:20px;box-shadow:var(--shadow-card)}
+.section.yellow-bg{background:#fdf7e6;border-color:#f4e4b0}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-icon{flex:0 0 auto;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,#2f6bea,#1d4ed8);box-shadow:0 6px 14px rgba(29,78,216,.30);filter:drop-shadow(0 1px 1px rgba(0,0,0,.22))}
+.section.yellow-bg .section-icon{background:linear-gradient(135deg,#f0a92b,#d97706);box-shadow:0 6px 14px rgba(217,119,6,.30)}
+h2{font-size:20px;font-weight:700;color:var(--blue-deep);line-height:1.2}
+h2.red{color:var(--red)}
+.section.yellow-bg h2{color:#b45309}
+h3{font-size:15px;font-weight:700;color:var(--text-strong);margin:22px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 
-.faq-photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 14px 0;
-}
-.faq-photo-col { text-align: center; }
-.faq-photo-col .fp-label { font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
-@media(max-width:560px) {
-  .model-tabs { grid-template-columns: 1fr; }
-  .faq-photos { grid-template-columns: 1fr; }
-}
+/* ---------- Step box ---------- */
+.step-box{border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin:14px 0;background:#f8fafc}
+.step-box ol,.step-box ul{padding-left:20px}
+.step-box li{margin-bottom:8px}
+.step-box h3{margin-top:0;border-bottom:none;padding-bottom:0;color:var(--blue-deep);margin-bottom:8px}
 
-.telegram-bot-block{
-  background:linear-gradient(135deg,#1689f5 0%,#0068d9 100%);
-  border-radius:18px;
-  padding:28px 32px;
-  margin-bottom:28px;
-  color:#fff;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 8px 28px -6px rgba(0,104,217,.35);
-}
-.telegram-bot-block::after{
-  content:"✈️";
-  position:absolute;
-  right:35px;
-  bottom:18px;
-  font-size:110px;
-  opacity:.12;
-}
-.telegram-bot-title{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:30px;
-  padding:6px 18px;
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:18px;
-}
-.telegram-bot-block p{
-  max-width:620px;
-  font-size:15px;
-  line-height:1.7;
-  margin-bottom:18px;
-}
-.telegram-bot-link{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:#fff;
-  color:#1677e8;
-  text-decoration:none;
-  font-weight:700;
-  padding:12px 22px;
-  border-radius:12px;
-  transition:.15s;
-}
-.telegram-bot-link:hover{
-  transform:translateY(-2px);
-}
-.telegram-url{
-  display:block;
-  margin-top:14px;
-  color:#fff;
-  text-decoration:underline;
-  font-weight:600;
-}
+/* ---------- Alerts ---------- */
+.alert{padding:14px 16px;border-radius:12px;margin:14px 0;border-left:4px solid transparent;font-size:14px;display:flex;gap:11px;line-height:1.6}
+.alert .ai{font-size:18px;flex-shrink:0;margin-top:1px}
+.alert .ab{display:inline;line-height:1.6}
+.alert .ab *{display:inline}
+.alert .ab strong{display:inline;font-weight:700}
+.alert .ab br{display:block;content:'';margin-top:4px}
+.alert-warn{background:#fef6e7;border-left-color:#d99a2b;color:#7a4e12}
+.alert-warn-on-yellow{background:#f7e2b0;border-left-color:#b45309;color:#5a3d12}
+.alert-danger{background:#fdecec;border-left-color:var(--red);color:#8a2020}
+.alert-info{background:var(--blue-soft-2);border-left-color:var(--blue);color:#274063}
+.alert-success{background:#e9f9ef;border-left-color:var(--green);color:#155e34}
+.inline-link{color:var(--blue);text-decoration:underline;text-underline-offset:2px;font-weight:700;display:inline!important}
+.inline-link:hover{color:var(--blue-strong)}
 
+/* ---------- Code ---------- */
+code{background:#eef2f7;border:1px solid var(--border);padding:2px 7px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#be123c;font-weight:600}
+.code-block{background:#0f172a;border-radius:12px;padding:14px 18px;margin:14px 0;position:relative;overflow-x:auto}
+.code-block pre{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#86efac;white-space:pre-wrap;word-break:break-all;line-height:1.6}
+.code-label{font-size:10px;color:#7c8aa0;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.copy-btn{position:absolute;top:10px;right:10px;background:#1e293b;border:1px solid #334155;color:#9fb0c6;font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.copy-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ---------- Screenshots ---------- */
+.screenshot{width:100%;border-radius:10px;border:1px solid var(--border);margin:14px 0 4px;display:block}
+.screenshot-caption{text-align:center;font-size:11.5px;color:var(--muted);margin-bottom:14px;font-style:italic}
+.img-placeholder{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:12px;padding:18px;text-align:center;margin:14px 0;color:#94a3b8;font-size:13px}
+
+/* ---------- 4A banner ---------- */
+.model-4a-banner{display:flex;align-items:center;gap:14px;background:var(--blue-soft-2);border:1.5px solid #bcd4fb;border-radius:12px;padding:15px 18px;margin:14px 0;text-decoration:none;color:var(--text);transition:all .15s}
+.model-4a-banner:hover{background:#dfeafe;transform:translateY(-1px)}
+.model-4a-icon{font-size:26px;flex-shrink:0}
+.model-4a-banner div{flex:1}
+.model-4a-banner strong{display:block;font-size:15px;color:var(--blue-deep);margin-bottom:2px}
+.model-4a-banner span{font-size:13px;color:var(--muted)}
+.model-4a-arrow{font-size:20px;color:var(--blue);font-weight:700;flex-shrink:0}
+
+/* ---------- Methods list ---------- */
+.methods-list{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin:12px 0;display:flex;flex-direction:column;gap:7px}
+.method-item{font-size:14px;padding-left:6px;color:var(--text)}
+
+/* ---------- Model tabs ---------- */
+.model-tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.model-tab-btn{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:15px;text-align:center;cursor:pointer;transition:all .15s}
+.model-tab-btn:hover{border-color:var(--blue)}
+.model-tab-btn.active{border-color:var(--blue);background:var(--blue-soft-2)}
+.model-tab-btn .mtb-title{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:8px}
+.model-tab-btn.active .mtb-title{color:var(--blue-deep)}
+.model-tab-btn .mtb-toggle{display:inline-block;background:var(--blue);color:#fff;font-size:11.5px;font-weight:600;padding:5px 13px;border-radius:7px}
+.model-tab-content{display:none;margin-top:12px}
+.model-tab-content.active{display:block}
+
+/* ---------- Backups ---------- */
+.backup-grid-top{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 12px}
+.backup-grid-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0 0 16px}
+.backup-card{border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;background:#f8fafc;align-items:center;text-align:center}
+.backup-card .bname{font-weight:700;font-size:14px;color:var(--text-strong)}
+.dl-btn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-weight:700;font-size:12.5px;padding:9px 16px;border-radius:9px;text-decoration:none;transition:all .15s;align-self:center;box-shadow:0 4px 12px rgba(22,163,74,.22)}
+.dl-btn:hover{background:#15803d;transform:translateY(-1px)}
+.backup-version-group{border:1px solid var(--border);border-radius:12px;padding:16px;background:#f8fafc;display:flex;flex-direction:column;align-items:center;gap:12px}
+.backup-version-group .bname{font-weight:700;font-size:14px;color:var(--text-strong)}
+.backup-versions{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.backup-version-item{display:flex;flex-direction:column;align-items:center;gap:9px;border:1px dashed #cdd7e3;border-radius:10px;padding:12px}
+.backup-version-item .bver-label{font-size:12px;font-weight:600;color:var(--muted)}
+
+/* ---------- FAQ photos ---------- */
+.faq-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.faq-photo-col{text-align:center}
+.faq-photo-col .fp-label{font-size:12.5px;font-weight:600;margin-bottom:6px;color:var(--text-strong)}
+.sub-h3{font-size:14px;font-weight:700;color:var(--text-strong);margin:14px 0 8px}
+
+p{margin-bottom:10px}
+footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+  .sidenav{display:none}
+  .mobile-bar{display:block}
+  .main{margin-left:0}
+  .content{padding:16px 14px 60px}
+  .hero{flex-direction:column;align-items:flex-start;padding:26px 22px}
+  .hero-art{width:170px;max-width:55%;align-self:center;margin-top:6px}
+  .wifi-block{padding:22px 18px}
+  .wifi-deco{display:none}
+  .section{padding:20px 16px}
+  .telegram-bot-block{flex-direction:column;align-items:flex-start;padding:24px 20px}
+  .tg-logo{width:88px;align-self:center}
+}
+@media(max-width:600px){.backup-grid-top{grid-template-columns:1fr 1fr}.backup-grid-bottom{grid-template-columns:1fr}}
+@media(max-width:560px){.model-tabs{grid-template-columns:1fr}.faq-photos{grid-template-columns:1fr}.backup-versions{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -309,7 +209,9 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#connection"><span class="ni">🔗</span> Подключение роутера</a>
     <a href="#web-interface"><span class="ni">🖥️</span> Веб-панель управления</a>
     <a href="#podkop-settings"><span class="ni">⚙️</span> Настройки Podkop</a>
+    <a href="#full-vpn"><span class="ni">🛡️</span> Все через ВПН</a>
     <div class="nav-divider"></div>
+    <a href="#settings-update"><span class="ni">✨</span> Обновление настроек</a>
     <a href="#updates"><span class="ni">🔄</span> Обновление серверов</a>
     <a href="#reset"><span class="ni">🔁</span> Сброс и восстановление</a>
     <a href="#backups"><span class="ni">💾</span> Бекапы прошивки</a>
@@ -324,6 +226,15 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <div class="nav-divider"></div>
     <a href="#avito-rkn"><span class="ni">📋</span> Авито и Роскомнадзор</a>
   </nav>
+  <div class="side-help">
+    <h4>Нужна помощь?</h4>
+    <p>Обратитесь в наш чат-бот в Telegram</p>
+    <span class="tgico"><svg width="30" height="30" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="tgMini" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37aee2"/><stop offset="1" stop-color="#1e96c8"/></linearGradient></defs>
+<circle cx="120" cy="120" r="120" fill="url(#tgMini)"/>
+<path fill="#fff" d="M53 118.5 170 73.6c5.4-2 10.2 1.3 8.4 9.6l-19.9 94c-1.5 7-5.6 8.7-11.4 5.4l-31.5-23.2-15.2 14.6c-1.7 1.7-3.1 3.1-6.3 3.1l2.2-32 58.3-52.7c2.5-2.2-.6-3.5-3.9-1.3l-72 45.4-31-9.7c-6.7-2.1-6.9-6.7 1.4-9.9Z"/>
+</svg></span>
+  </div>
 </aside>
 
 <div class="mobile-bar">
@@ -335,6 +246,8 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <a href="#connection" onclick="closeNav()">🔗 Подключение роутера</a>
     <a href="#web-interface" onclick="closeNav()">🖥️ Веб-панель управления</a>
     <a href="#podkop-settings" onclick="closeNav()">⚙️ Настройки Podkop</a>
+    <a href="#full-vpn" onclick="closeNav()">🛡️ Все через ВПН</a>
+    <a href="#settings-update" onclick="closeNav()">✨ Обновление настроек</a>
     <a href="#updates" onclick="closeNav()">🔄 Обновление серверов</a>
     <a href="#reset" onclick="closeNav()">🔁 Сброс и восстановление</a>
     <a href="#backups" onclick="closeNav()">💾 Бекапы прошивки</a>
@@ -351,12 +264,32 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
 <div class="content">
 
 <header class="hero">
-  <div class="hero-badge">OpenWrt · Podkop · Выборочная маршрутизация</div>
-  <h1>Руководство пользователя роутера</h1>
-  <p><strong>Ваш роутер уже полностью настроен</strong> и готов к работе. Предустановлена подписка с доступом к более чем 100 серверам, установлено автообновление. Просто подключитесь к Wi-Fi и пользуйтесь.</p>
+  <div class="hero-copy">
+    <div class="hero-badge">OpenWrt · Podkop · Выборочная маршрутизация</div>
+    <h1>Руководство пользователя роутера</h1>
+    <p><strong>Ваш роутер уже полностью настроен</strong> и готов к работе. Предустановлена подписка с доступом к более чем 100 серверам, установлено автообновление. Просто подключитесь к Wi-Fi и пользуйтесь.</p>
+  </div>
+  <div class="hero-art"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<linearGradient id="rBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3f8f"/><stop offset="1" stop-color="#131f52"/></linearGradient>
+<linearGradient id="rTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b56b8"/><stop offset="1" stop-color="#26377f"/></linearGradient>
+<linearGradient id="rAnt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4762c9"/><stop offset="1" stop-color="#1c2a6b"/></linearGradient>
+</defs>
+<rect x="70" y="26" width="9" height="86" rx="4.5" fill="url(#rAnt)" transform="rotate(-16 74 70)"/>
+<rect x="120" y="18" width="9" height="94" rx="4.5" fill="url(#rAnt)" transform="rotate(-6 124 65)"/>
+<rect x="168" y="18" width="9" height="94" rx="4.5" fill="url(#rAnt)" transform="rotate(6 172 65)"/>
+<rect x="216" y="26" width="9" height="86" rx="4.5" fill="url(#rAnt)" transform="rotate(16 220 70)"/>
+<ellipse cx="150" cy="196" rx="120" ry="14" fill="rgba(0,0,0,.22)"/>
+<path d="M40 150 Q150 116 260 150 L248 186 Q150 200 52 186 Z" fill="url(#rTop)"/>
+<rect x="44" y="150" width="212" height="46" rx="14" fill="url(#rBody)"/>
+<path d="M44 164 h212" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+<g fill="#5cc8ff"><circle cx="96" cy="178" r="4.2"/><circle cx="123" cy="178" r="4.2"/><circle cx="150" cy="178" r="4.2"/><circle cx="177" cy="178" r="4.2"/><circle cx="204" cy="178" r="4.2"/></g>
+<path d="M52 155 q98 -22 196 0" stroke="rgba(120,160,255,.35)" stroke-width="2" fill="none"/>
+</svg></div>
 </header>
 
 <div class="wifi-block" id="wifi">
+  <svg class="wifi-deco" width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0" opacity=".9"/><path d="M2 9a15 15 0 0 1 20 0" opacity=".65"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1.1" fill="#34d399" stroke="none"/></svg>
   <div class="wifi-title">📶 Данные для подключения к Wi-Fi</div>
   <div class="wifi-rows">
     <div class="wifi-row">
@@ -368,22 +301,26 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     </div>
     <div class="wifi-row">
       <span class="wifi-label">Пароль:</span>
-      <div class="wifi-vals"><span class="wifi-val pw">avito1234</span></div>
+      <div class="wifi-vals">
+        <span class="wifi-val" style="color:#6ee7b7;font-size:16px;letter-spacing:.06em;background:rgba(0,0,0,.30);border:1px solid rgba(110,231,183,.30);">avito1234</span>
+      </div>
     </div>
   </div>
-
+  <div class="wifi-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r=".95" fill="currentColor" stroke="none"/></svg> Рекомендуется изменить пароль после первого входа в настройки.</div>
 </div>
 
 <div class="telegram-bot-block">
-  <div class="telegram-bot-title">🤖 Чат-Бот в Telegram</div>
-  <p>
-    Если не хотите читать полностью инструкцию и хотите получить ответ сразу же
-    конкретно по вашему вопросу, либо возникли вопросы в процессе настройки,
-    можете обратиться за помощью в чат-бот.
-  </p>
-  <a class="telegram-bot-link" href="https://t.me/Aleksey_Avito_Bot?start=aM2Tf8QAsVyrjOHtVimU474S" target="_blank">
-    ✈️ Открыть чат-бот в Telegram →
-  </a>
+  <div class="tg-logo"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="tgBig" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37aee2"/><stop offset="1" stop-color="#1e96c8"/></linearGradient></defs>
+<circle cx="120" cy="120" r="120" fill="url(#tgBig)"/>
+<path fill="#fff" d="M53 118.5 170 73.6c5.4-2 10.2 1.3 8.4 9.6l-19.9 94c-1.5 7-5.6 8.7-11.4 5.4l-31.5-23.2-15.2 14.6c-1.7 1.7-3.1 3.1-6.3 3.1l2.2-32 58.3-52.7c2.5-2.2-.6-3.5-3.9-1.3l-72 45.4-31-9.7c-6.7-2.1-6.9-6.7 1.4-9.9Z"/>
+</svg></div>
+  <div class="tg-body">
+    <div class="telegram-bot-title">Чат-Бот в Telegram</div>
+    <p>Если не хотите читать полностью инструкцию и хотите получить ответ сразу же конкретно по вашему вопросу, либо возникли вопросы в процессе настройки, можете обратиться за помощью в чат-бот.</p>
+    <a class="telegram-bot-link" href="https://t.me/Aleksey_Avito_Bot?start=aM2Tf8QAsVyrjOHtVimU474S" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><path fill="#1f74d8" d="M53 118.5 170 73.6c5.4-2 10.2 1.3 8.4 9.6l-19.9 94c-1.5 7-5.6 8.7-11.4 5.4l-31.5-23.2-15.2 14.6c-1.7 1.7-3.1 3.1-6.3 3.1l2.2-32 58.3-52.7c2.5-2.2-.6-3.5-3.9-1.3l-72 45.4-31-9.7c-6.7-2.1-6.9-6.7 1.4-9.9Z"/></svg> Открыть чат-бот в Telegram <span class="chev">→</span></a>
+    <a class="telegram-url" href="https://t.me/Aleksey_Avito_Bot?start=aM2Tf8QAsVyrjOHtVimU474S" target="_blank" rel="noopener">🔗 https://t.me/Aleksey_Avito_Bot</a>
+  </div>
 </div>
 
 <!-- TROUBLESHOOTING -->
@@ -586,6 +523,138 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
   </div>
   <img src="img/22.png" alt="Save & Apply" class="screenshot">
 <p class="screenshot-caption">После изменений обязательно нажимайте Save & Apply</p>
+</section>
+
+
+
+<!-- FULL VPN -->
+<section class="section" id="full-vpn">
+  <div class="section-header">
+    <span class="section-icon">🛡️</span>
+    <h2>Все через ВПН</h2>
+  </div>
+
+  <p>По умолчанию на роутере настроена <strong>выборочная маршрутизация</strong> — весь трафик идёт напрямую через вашего провайдера, кроме тех доменов, которые прописаны для маршрутизации через ВПН. За счёт этого достигается полная работоспособность как отечественных сервисов — банки, маркетплейсы, гос. ресурсы не ругаются на включённый ВПН, так и зарубежных заблокированных ресурсов — они маршрутизируются через серверы ВПН, благодаря чему открываются.</p>
+
+  <p>Однако есть возможность сделать так, чтобы <strong>ВЕСЬ трафик</strong> шёл через серверы ВПН. Доступно два варианта:</p>
+
+  <ul style="padding-left:20px;margin-bottom:16px;">
+    <li style="margin-bottom:8px;"><strong>Полная маршрутизация ВСЕГО трафика через ВПН с автовыбором сервера с наименьшим пингом (URLTest)</strong></li>
+    <li><strong>Полная маршрутизация ВСЕГО трафика через 1 выбранный сервер</strong></li>
+  </ul>
+
+  <div class="alert alert-danger">
+    <span class="ai">🚨</span>
+    <span class="ab">
+      <strong>Важное предупреждение:</strong> отечественные ресурсы перестанут открываться, за некоторым исключением. Возможна неправильная геопозиция. Сервисы по отображению IP-адреса, тестированию скорости будут показывать IP-адрес VPN-сервера и скорость через него соответственно. <strong>Рекомендуется применять только на мощных роутерах.</strong> После включения данного режима необходимо дать прогрузиться роутеру (не менять никакие настройки, не перезагружать, не запускать диагностику — никакие кнопки и т.д.) около <strong>5–7 минут</strong>.
+    </span>
+  </div>
+
+  <div class="step-box">
+    <p style="font-size:15px;font-weight:700;margin-bottom:14px;color:#1e293b;">🔑 Пароль для включения данного режима</p>
+    <div style="display:flex;align-items:center;gap:10px;background:#f1f5f9;border:1.5px solid #cbd5e1;border-radius:10px;padding:10px 18px;max-width:360px;">
+      <span id="fvPwVal" data-real="oznakomlen" style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#0f172a;letter-spacing:.14em;flex:1;user-select:none;">••••••••••</span>
+      <button id="fvPwToggle" aria-label="Показать пароль" aria-pressed="false" style="background:none;border:none;cursor:pointer;color:#64748b;padding:5px;display:flex;align-items:center;">
+        <svg id="fvEyeOpen" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg id="fvEyeClosed" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M3 3l18 18"/><path d="M10.6 10.7a3 3 0 0 0 4 4"/><path d="M9.4 5.3A9.6 9.6 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.4 4.1M6.2 6.3A17 17 0 0 0 2 12s3.5 7 10 7a9.5 9.5 0 0 0 3.3-.6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <h3>Как включить режим</h3>
+  <div class="step-box">
+    <ol>
+      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+      <li>Перейдите во вкладку <strong>Services → Podkop</strong></li>
+    </ol>
+    <img src="img/71.png" alt="Services → Podkop" class="screenshot">
+    <p class="screenshot-caption">Открываем Services → Podkop</p>
+    <p>Вы увидите, что по умолчанию выбран режим маршрутизации по спискам. Чтобы поставить режим полной маршрутизации — выберите необходимый режим <strong>FullVPN</strong> и введите пароль.</p>
+  </div>
+
+  <div class="model-tabs">
+    <div class="model-tab-btn" data-tab="fv-urltest" onclick="switchTab('fv', 'fv-urltest')">
+      <div class="mtb-title">Режим Full VPN с автовыбором сервера</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+    <div class="model-tab-btn" data-tab="fv-manual" onclick="switchTab('fv', 'fv-manual')">
+      <div class="mtb-title">Режим Full VPN с ручным выбором 1 сервера</div>
+      <span class="mtb-toggle">Развернуть</span>
+    </div>
+  </div>
+
+  <div class="model-tab-content" id="fv-urltest">
+    <div class="step-box">
+      <ol>
+        <li>Выберите соответствующий режим</li>
+      </ol>
+      <img src="img/72.png" alt="Выбор режима Full VPN URLTest" class="screenshot">
+      <p class="screenshot-caption">Выбираем режим Full VPN с автовыбором сервера</p>
+      <ol start="2">
+        <li>Введите пароль</li>
+      </ol>
+      <img src="img/73.png" alt="Ввод пароля" class="screenshot">
+      <p class="screenshot-caption">Вводим пароль для подтверждения</p>
+      <ol start="3">
+        <li>Промотайте страницу в самый низ и сохраните настройки, нажав кнопку <code>Save &amp; Apply</code></li>
+      </ol>
+      <img src="img/22.png" alt="Save &amp; Apply" class="screenshot">
+      <p class="screenshot-caption">Нажимаем Save &amp; Apply</p>
+    </div>
+  </div>
+
+  <div class="model-tab-content" id="fv-manual">
+    <div class="step-box">
+      <ol>
+        <li>Выберите соответствующий режим</li>
+      </ol>
+      <img src="img/77.png" alt="Выбор режима Full VPN ручной сервер" class="screenshot">
+      <p class="screenshot-caption">Выбираем режим Full VPN с ручным выбором сервера</p>
+      <ol start="2">
+        <li>Выберите любой необходимый сервер из списка</li>
+      </ol>
+      <img src="img/78.png" alt="Выбор сервера из списка" class="screenshot">
+      <p class="screenshot-caption">Выбираем нужный сервер из списка</p>
+      <ol start="3">
+        <li>Введите пароль</li>
+      </ol>
+      <img src="img/82.png" alt="Ввод пароля" class="screenshot">
+      <p class="screenshot-caption">Вводим пароль для подтверждения</p>
+      <ol start="4">
+        <li>Промотайте страницу в самый низ и сохраните настройки, нажав кнопку <code>Save &amp; Apply</code></li>
+      </ol>
+      <img src="img/22.png" alt="Save &amp; Apply" class="screenshot">
+      <p class="screenshot-caption">Нажимаем Save &amp; Apply</p>
+    </div>
+  </div>
+
+</section>
+<!-- SETTINGS UPDATE -->
+<section class="section" id="settings-update">
+  <div class="section-header">
+    <span class="section-icon">✨</span>
+    <h2>Обновление настроек</h2>
+  </div>
+
+  <p>Я постоянно дорабатываю и улучшаю прошивку — чиню то, что ломает Роскомнадзор, и упрощаю всевозможные настройки. Для того чтобы иметь новейшие версии Podkop и всех моих улучшений — необходимо загрузить на свой роутер бекап, соответствующий вашей модели роутера. Как это сделать — читайте в главе <a href="#backups" class="inline-link"><strong>Бекапы</strong></a>.</p>
+
+  <div class="alert alert-warn">
+    <span class="ai">⚠️</span>
+    <span class="ab">
+      <strong>Важно!</strong> После загрузки бекапа и захода в настройки вы можете не увидеть отличий — например, новые режимы (Full VPN) могут не отображаться, и на первый взгляд всё будет так же, как и до загрузки бекапа. Это происходит из-за того, что <strong>кэш браузера не обновился</strong> — вам отображается старая (закэшированная) версия веб-интерфейса.
+    </span>
+  </div>
+
+  <h3>Как сбросить кэш браузера</h3>
+  <div class="step-box">
+    <p>Выберите любой удобный способ:</p>
+    <ul>
+      <li>Сбросить кэш браузера — обычно <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">Ctrl</kbd> + <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">Shift</kbd> + <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">Del</kbd> на Windows / Linux или <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">⌘</kbd> + <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">Shift</kbd> + <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:5px;padding:2px 7px;font-family:monospace;font-size:13px;">Del</kbd> на Mac</li>
+      <li>Открыть страницу в режиме инкогнито / приватного</li>
+      <li>Перезапустить браузер</li>
+      <li>Перезагрузить устройство</li>
+    </ul>
+  </div>
 </section>
 
 <!-- UPDATES -->
@@ -927,6 +996,29 @@ footer{text-align:center;padding:36px 0 16px;color:var(--muted);font-size:12.5px
     <span class="ab"><strong>Важно:</strong> устройство с прописанным IP будет работать полностью через VPN. Доступ к банкам, госсервисам и другим российским ресурсам с него может быть ограничен.</span>
   </div>
 
+  <p>В последних версиях прошивки я доработал этот параметр, поэтому ниже сначала идёт <strong>обновлённая инструкция — она намного проще</strong>. Ниже неё — основная (старая) инструкция.</p>
+
+  <h3>Обновлённая инструкция (рекомендуется)</h3>
+  <div class="step-box">
+    <ol>
+      <li>Зайдите в <a href="#web-interface" class="inline-link"><strong>веб-панель роутера</strong></a> — <a href="http://192.168.5.1" target="_blank" class="inline-link"><code>192.168.5.1</code></a> или <a href="http://openwrt.lan/cgi-bin/luci/" target="_blank" class="inline-link"><code>openwrt.lan/cgi-bin/luci/</code></a></li>
+      <li>Перейдите во вкладку <strong>Services → Podkop</strong>. Откроется главная вкладка «Секции». Пролистайте её в самый низ — вы увидите параметр <strong>«Полностью маршрутизируемые IP-адреса»</strong>. Нажмите на строку, чтобы открыть выпадающий список подключённых устройств, затем нажмите на нужный IP-адрес.</li>
+    </ol>
+    <img src="img/80.png" alt="Выбор IP из выпадающего списка" class="screenshot">
+    <p class="screenshot-caption">Открываем список и выбираем нужный IP-адрес нажатием</p>
+    <ol start="2">
+      <li>После нажатия вы увидите, что IP-адрес добавился в список полностью маршрутизируемых устройств.</li>
+    </ol>
+    <img src="img/81.png" alt="IP добавлен в список" class="screenshot">
+    <p class="screenshot-caption">IP-адрес появился в списке маршрутизации</p>
+    <ol start="3">
+      <li>Сохраните настройки нажатием на кнопку <code>Save &amp; Apply</code></li>
+    </ol>
+    <img src="img/22.png" alt="Save &amp; Apply" class="screenshot">
+    <p class="screenshot-caption">Нажимаем Save &amp; Apply для сохранения</p>
+  </div>
+
+  <h3>Основная инструкция (старый способ)</h3>
   <div class="step-box">
     <ol>
       <li>
@@ -1307,7 +1399,7 @@ function switchTab(group, targetId){
     if (t) t.textContent = 'Свернуть';
   }
 }
-const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a','avito-rkn':'#avito-rkn'};
+const navMap={'wifi':'#wifi','troubleshooting':'#troubleshooting','diagnostics':'#diagnostics','connection':'#connection','web-interface':'#web-interface','podkop-settings':'#podkop-settings','full-vpn':'#full-vpn','settings-update':'#settings-update','updates':'#updates','reset':'#reset','backups':'#backups','gaming-mining':'#gaming-mining','server-switch':'#server-switch','main-router':'#main-router','wifi-settings':'#wifi-settings','xiaomi-4a':'#xiaomi-4a','avito-rkn':'#avito-rkn'};
 const links=document.querySelectorAll('.sidenav a');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -1319,6 +1411,22 @@ const obs=new IntersectionObserver(entries=>{
   });
 },{rootMargin:'-10% 0px -60% 0px',threshold:0});
 document.querySelectorAll('[id]').forEach(s=>obs.observe(s));
+
+
+
+(function(){
+  var v=document.getElementById('fvPwVal'),b=document.getElementById('fvPwToggle');
+  if(!v||!b)return;
+  var real=v.getAttribute('data-real'),dots=v.textContent,masked=true;
+  var eo=document.getElementById('fvEyeOpen'),ec=document.getElementById('fvEyeClosed');
+  b.addEventListener('click',function(){
+    masked=!masked;
+    v.textContent=masked?dots:real;
+    if(eo&&ec){eo.style.display=masked?'block':'none';ec.style.display=masked?'none':'block';}
+    b.setAttribute('aria-pressed',String(!masked));
+    b.setAttribute('aria-label',masked?'Показать пароль':'Скрыть пароль');
+  });
+})();
 </script>
 </body>
 </html>
